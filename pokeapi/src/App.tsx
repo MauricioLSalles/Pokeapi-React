@@ -1,14 +1,12 @@
-import CardHeader from './Atoms/CardHeader'
-import CardNumber from './Atoms/CardNumber'
 import Label from './Atoms/Label'
+import CardDescription from './Molecules/CardDescription'
 
 function App() {
 
   return (
     <>
+      <CardDescription/>
       <Label/>
-      <CardHeader name='Bulbasor'/>
-      <CardNumber number='001'/>
     </>
   )
 }
