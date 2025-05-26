@@ -1,0 +1,13 @@
+.PokemonCard{
+    background-color: green;
+    width: 378px;
+    height: 250px;
+    border-radius: 10px;
+}
+
+.PokemonCard-description{
+    position: relative;
+    top: 75px;
+    left: 25px;
+    gap: 8px;
+}

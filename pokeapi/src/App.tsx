@@ -1,11 +1,11 @@
 import Label from './Atoms/Label'
-import CardDescription from './Molecules/CardDescription'
+import PokemonCard from './Organisms/PokemonCard'
 
 function App() {
 
   return (
     <>
-      <CardDescription/>
+      <PokemonCard/>
       <Label/>
     </>
   )
