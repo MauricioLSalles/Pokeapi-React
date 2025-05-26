@@ -1,4 +1,4 @@
-import './Styles/CardHeader.css';
+import './CardHeader.css';
 
 function CardHeader({name}:{name:string}) {
   return (

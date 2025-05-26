@@ -9,5 +9,13 @@
     position: relative;
     top: 75px;
     left: 25px;
-    gap: 8px;
+}
+
+.PokemonCard-image{
+    position: absolute;
+    width: 210px;
+    height: 210px;
+    top: 16px;
+    left: 213px;
+
 }

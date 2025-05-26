@@ -2,4 +2,18 @@
     color: #FFFFFF;
     font-family: 'roboto';
     font-size: 12px;
+    width: 62px;
+    height: 25px;
+    gap: 5px;
+    border-radius: 3px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.label-icon{
+    width: 15px;
+    height: 15px;
+    background: #000;
+
 }

@@ -1,8 +1,12 @@
-import './Styles/Label.css'
+import LabelText from '../../Atoms/LabelText/LabelText'
+import './Label.css'
 
-function Label({label}:{label:string}) {
+function Label({label, color}:{label:string, color:string}) {
   return (
-    <div className="label">{label}</div>
+    <div className="label" style={{backgroundColor:color}}>
+      <svg className='label-icon'></svg>
+      <LabelText label={label}/>
+      </div>
   )
 }
 

@@ -1,4 +1,4 @@
-import "./Styles/CardNumber.css"
+import "./CardNumber.css"
 
 function CardNumber({number}:{number:string}) {
   return (

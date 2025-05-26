@@ -1,7 +1,7 @@
 
-function LabelText() {
+function LabelText({label}:{label:string}) {
   return (
-    <span className="LabelText">LabelText</span>
+    <span className="LabelText">{label}</span>
   )
 }
 

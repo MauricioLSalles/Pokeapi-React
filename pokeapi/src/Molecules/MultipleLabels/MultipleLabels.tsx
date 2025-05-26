@@ -1,10 +1,10 @@
 import Label from '../Label/Label'
-import './Styles/MultipleLabels.css'
+import './MultipleLabels.css'
 function MultipleLabels({labels}:{labels:string[]}) {
   return (
     <div className="MultipleLabels">
         {labels.map(label => 
-            <Label label={label}/>
+            <Label color='grey' label={label}/>
         )}
     </div>
   )

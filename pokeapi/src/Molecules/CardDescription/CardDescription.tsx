@@ -1,4 +1,4 @@
-import './Styles/CardDescription.css'
+import './CardDescription.css'
 import CardHeader from "../../Atoms/CardHeader/CardHeader"
 import CardNumber from "../../Atoms/CardNumber/CardNumber"
 
