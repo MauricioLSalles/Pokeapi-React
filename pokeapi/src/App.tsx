@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Label/>
-      <CardHeader/>
+      <CardHeader name='Bulbasor'/>
       <CardNumber number='001'/>
     </>
   )

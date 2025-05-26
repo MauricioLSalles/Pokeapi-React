@@ -1,6 +1,8 @@
-function CardHeader() {
+import './Styles/CardHeader.css';
+
+function CardHeader({name}:{name:string}) {
   return (
-    <div>CardHeader</div>
+    <span className="CardHeader">{name}</span>
   )
 }
 
