@@ -1,4 +1,3 @@
-import './App.css'
 import CardHeader from './Atoms/CardHeader'
 import CardNumber from './Atoms/CardNumber'
 import Label from './Atoms/Label'
@@ -9,7 +8,7 @@ function App() {
     <>
       <Label/>
       <CardHeader/>
-      <CardNumber/>
+      <CardNumber number='001'/>
     </>
   )
 }

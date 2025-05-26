@@ -1,6 +1,10 @@
-function CardNumber() {
+import "./Styles/CardNumber.css"
+
+function CardNumber({number}:{number:string}) {
   return (
-    <div>CardNumber</div>
+    <span className="CardNumber">
+        #{number}
+    </span>
   )
 }
 
