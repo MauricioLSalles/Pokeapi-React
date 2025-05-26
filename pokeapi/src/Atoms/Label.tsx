@@ -1,6 +1,6 @@
 function Label() {
   return (
-    <div>Label</div>
+    <div className="label">Label</div>
   )
 }
 
