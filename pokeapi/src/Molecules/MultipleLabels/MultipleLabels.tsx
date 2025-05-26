@@ -1,10 +1,10 @@
-import Label from '../Atoms/Label'
+import Label from '../Label/Label'
 import './Styles/MultipleLabels.css'
 function MultipleLabels({labels}:{labels:string[]}) {
   return (
     <div className="MultipleLabels">
         {labels.map(label => 
-            <Label />
+            <Label label={label}/>
         )}
     </div>
   )

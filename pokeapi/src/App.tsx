@@ -1,12 +1,10 @@
-import Label from './Atoms/Label'
-import PokemonCard from './Organisms/PokemonCard'
+import PokemonCard from './Organisms/PokemonCard/PokemonCard'
 
 function App() {
 
   return (
     <>
       <PokemonCard/>
-      <Label/>
     </>
   )
 }

@@ -1,6 +1,6 @@
 import './Styles/CardDescription.css'
-import CardHeader from "../Atoms/CardHeader"
-import CardNumber from "../Atoms/CardNumber"
+import CardHeader from "../../Atoms/CardHeader/CardHeader"
+import CardNumber from "../../Atoms/CardNumber/CardNumber"
 
 function CardDescription() {
   return (
