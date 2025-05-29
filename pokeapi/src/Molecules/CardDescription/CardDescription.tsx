@@ -2,12 +2,12 @@ import './CardDescription.css'
 import CardHeader from "../../Atoms/CardHeader/CardHeader"
 import CardNumber from "../../Atoms/CardNumber/CardNumber"
 
-function CardDescription() {
+function CardDescription({number,name}:{number:string,name:string}) {
   return (
     <div className="CardDescription">
-        <CardNumber number="001"/>
+        <CardNumber number={number}/>
         <br/>
-        <CardHeader name="Bulbasor"/>
+        <CardHeader name={name}/>
     </div>
   )
 }

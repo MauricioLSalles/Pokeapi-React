@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <PokemonCard/>
+      <PokemonCard number={"001"} name={"Bulbasor"} labels={["grass", "poison"]} imgSrc={'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/132.png'}/>
     </>
   )
 }
