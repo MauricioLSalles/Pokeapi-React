@@ -1,26 +1,10 @@
-import { useEffect, useState } from 'react'
 import PokemonCard from './Organisms/PokemonCard/PokemonCard'
+import LoadPokemonsHook from './CustomHooks/LoadPokemonsHook';
 
 function App() {
 
-  const [number, setNumner] = useState("");
-  const [name, setName] = useState("");
-  const [labels, setLabels] = useState(["grass", "poison"]);
-  const [imgSrc, setImgSrc] = useState("");
-
-  useEffect(() => {
-     loadPokemon();
-  }, [])
-
-  async function loadPokemon() {
-    const res = await fetch("https://pokeapi.co/api/v2/pokemon/ditto");
-    const json = await res.json();
-    setName(json.name);
-    setNumner(json.id);
-    setImgSrc(json.sprites.back_default)
-    console.log(json);
-  }
-  
+  const {number,name,labels,imgSrc} = LoadPokemonsHook();
+ 
 
   return (
     <>

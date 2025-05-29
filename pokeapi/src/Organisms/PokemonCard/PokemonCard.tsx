@@ -3,7 +3,7 @@ import CardDescription from "../../Molecules/CardDescription/CardDescription"
 import MultipleLabels from '../../Molecules/MultipleLabels/MultipleLabels'
 
 
-function PokemonCard({number,name,labels, imgSrc}:{number:string,name:string,labels:string[],imgSrc:string}) {
+function PokemonCard({number,name,labels, imgSrc}:{number:string,name:string,labels:any[],imgSrc:string}) {
   return (
     <div className="PokemonCard">
       <div>
