@@ -1,8 +1,11 @@
+import LoadPokemonsHook from "../../CustomHooks/LoadPokemonsHook";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import './PokemonList.css';
 
 function PokemonList() {
-    const data = ["","","",""]
+
+    LoadPokemonsHook();
+    const data = ["","","",""];
   return (
     <div className="PokemonList">
         {
