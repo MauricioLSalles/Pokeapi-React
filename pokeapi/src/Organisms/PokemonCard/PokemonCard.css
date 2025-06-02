@@ -1,21 +1,22 @@
 .PokemonCard{
+    display: flex;
     background-color: green;
-    width: 378px;
+    max-width: 30vw;
+    min-width: fit-content;
     height: 250px;
     border-radius: 10px;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .PokemonCard-description{
-    position: relative;
-    top: 75px;
-    left: 25px;
+    width: 75px;
+    justify-self: start;
+    padding-left: 30px;
 }
 
 .PokemonCard-image{
-    position: absolute;
     width: 210px;
+    justify-self: end;
     height: 210px;
-    top: 16px;
-    left: 213px;
-
 }

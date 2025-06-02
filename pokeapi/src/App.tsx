@@ -1,14 +1,12 @@
-import PokemonCard from './Organisms/PokemonCard/PokemonCard'
-import LoadPokemonsHook from './CustomHooks/LoadPokemonsHook';
+import PokemonList from './Organisms/PokemonList/PokemonList';
 
 function App() {
 
-  const {number,name,labels,imgSrc} = LoadPokemonsHook();
  
 
   return (
     <>
-      <PokemonCard number={number} name={name} labels={labels} imgSrc={imgSrc}/>
+      <PokemonList/>
     </>
   )
 }

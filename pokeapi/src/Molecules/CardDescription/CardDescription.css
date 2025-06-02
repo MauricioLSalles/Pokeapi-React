@@ -1,4 +1,4 @@
 .CardDescription{
     height: 73px;
-    width: 164px;
+    width: min-content;
 }

@@ -1,27 +1,41 @@
 import { useEffect, useState } from "react";
+import type { Pokemon } from "../Types/Pokemon";
 
-function LoadPokemonsHook(){
+function LoadPokemonsHook():Pokemon{
+
+
     
-    const [number, setNumner] = useState<string>("");
-    const [name, setName] = useState<string>("");
-    const [labels, setLabels] = useState<any>([]);
-    const [imgSrc, setImgSrc] = useState<string>("");
+    const [pokemon, setPokemon] = useState<Pokemon>(
+      {
+        name: "",
+        number:"",
+        imgSrc:"",
+        types:[]
+      }
+    );
 
     async function loadPokemon() {
-    const res = await fetch("https://pokeapi.co/api/v2/pokemon/ditto");
-    const json = await res.json();
-    setName(json.name);
-    setNumner(json.id);
-    setImgSrc(json.sprites.back_default)
-    setLabels(json.types)
-    console.log(json.types);
+      const newPokemon:Pokemon = {
+        name: "",
+        number:"",
+        imgSrc:"",
+        types:[]
+      };
+      const res = await fetch("https://pokeapi.co/api/v2/pokemon/ditto");
+      const json = await res.json();
+      newPokemon.name = json.name;
+      newPokemon.number = json.id;
+      newPokemon.imgSrc = json.sprites.back_default;
+      newPokemon.types = json.types;
+      setPokemon(pokemon);
+      console.log(json);
   }
 
     useEffect(() => {
          loadPokemon();
       }, [])
 
-    return {number,name,labels,imgSrc};
+    return pokemon;
 }
 
 export default LoadPokemonsHook;
