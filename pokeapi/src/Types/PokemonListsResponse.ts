@@ -5,5 +5,5 @@ export type PokemonListsResponse =
     count:number;
     next:string;
     previous:string;
-    result:PokemonUrlResponse[];
+    results:PokemonUrlResponse[];
   };

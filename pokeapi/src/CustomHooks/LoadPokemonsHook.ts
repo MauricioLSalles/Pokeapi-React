@@ -7,9 +7,9 @@ function LoadPokemonsHook():Pokemon[]{
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
   async function load(){
-    const pokeList:Pokemon[]|undefined =  await loadList();
-    if(pokeList) setPokemons(pokeList);
+    const pokeList:Pokemon[] =  await loadList();
     console.log(pokeList);
+    setPokemons(pokeList);
   }
 
   useEffect(() => {
@@ -39,8 +39,8 @@ async function loadPokemon(url:string) {
     newPokemon.types = json.types;
     return newPokemon;
   }
-  catch{
-    console.log("error");
+  catch(e){
+    console.log(e);
   }
 }
 
@@ -49,13 +49,15 @@ async function loadList() {
   try{
     const res = await fetch("https://pokeapi.co/api/v2/pokemon/");
     const pokeListRes:PokemonListsResponse = await res.json();
-    for(let pokeUrl of pokeListRes.result){
+    pokeListRes.results.forEach (async (pokeUrl) =>{
       let pokemon:Pokemon|undefined = await loadPokemon(pokeUrl.url);
-      if(pokemon)  pokemonList.push(pokemon);
-    }
+      if(pokemon !== undefined)  pokemonList.push(pokemon);
+    })
     return pokemonList;
   }
-  catch{
-    console.log("error");
+  catch(e){
+    console.log(e);
+    const pokemonList:Pokemon[] = [];
+    return pokemonList;
   }
   }

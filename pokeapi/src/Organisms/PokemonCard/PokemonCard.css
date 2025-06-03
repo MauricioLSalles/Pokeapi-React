@@ -2,21 +2,25 @@
     display: flex;
     background-color: green;
     max-width: 30vw;
-    min-width: fit-content;
-    height: 250px;
+    min-width: 20vw;
     border-radius: 10px;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+}
+
+.PokemonCardDots {
+    position: absolute;
+    left: 25px;
+    top: 15px;
 }
 
 .PokemonCard-description{
-    width: 75px;
     justify-self: start;
     padding-left: 30px;
+    display: inline-block;
 }
 
 .PokemonCard-image{
-    width: 210px;
     justify-self: end;
-    height: 210px;
 }

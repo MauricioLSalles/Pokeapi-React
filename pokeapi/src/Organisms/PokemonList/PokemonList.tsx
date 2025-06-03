@@ -4,12 +4,11 @@ import './PokemonList.css';
 
 function PokemonList() {
 
-    LoadPokemonsHook();
-    const data = ["","","",""];
+    const pokeList = LoadPokemonsHook();
   return (
     <div className="PokemonList">
         {
-            data.map( (pokemon,id) => <PokemonCard key={id} number={"001"} name={"bulbasor"} labels={[]} imgSrc={""}/> )
+            pokeList.map( (pokemon,id) => <PokemonCard key={id} number={pokemon.number} name={pokemon.name} labels={pokemon.types} imgSrc={pokemon.imgSrc}/> )
         }
     </div>
   )
