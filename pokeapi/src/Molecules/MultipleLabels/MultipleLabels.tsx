@@ -1,6 +1,7 @@
+import type { Label as LabelType } from '../../Types/Label'
 import Label from '../Label/Label'
 import './MultipleLabels.css'
-function MultipleLabels({labels}:{labels:any[]}) {
+function MultipleLabels({labels}:{labels:LabelType[]}) {
   return (
     <div className="MultipleLabels">
         {labels.map((label,id) => 

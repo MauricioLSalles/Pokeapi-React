@@ -1,12 +1,11 @@
 .PokemonCard{
     display: flex;
     background-color: green;
-    max-width: 30vw;
-    min-width: 20vw;
     border-radius: 10px;
     align-items: center;
     justify-content: space-between;
     position: relative;
+    padding: 20px 0;
 }
 
 .PokemonCardDots {
@@ -17,7 +16,7 @@
 
 .PokemonCard-description{
     justify-self: start;
-    padding-left: 30px;
+    padding-left: 40px;
     display: inline-block;
 }
 

@@ -47,10 +47,10 @@ async function loadPokemon(url:string) {
 async function loadList() {
   const pokemonList:Pokemon[] = [];
   try{
-    const res = await fetch("https://pokeapi.co/api/v2/pokemon/");
+    const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=5&offset=0");
     const pokeListRes:PokemonListsResponse = await res.json();
     pokeListRes.results.forEach (async (pokeUrl) =>{
-      let pokemon:Pokemon|undefined = await loadPokemon(pokeUrl.url);
+      const pokemon:Pokemon|undefined = await loadPokemon(pokeUrl.url);
       if(pokemon !== undefined)  pokemonList.push(pokemon);
     })
     return pokemonList;

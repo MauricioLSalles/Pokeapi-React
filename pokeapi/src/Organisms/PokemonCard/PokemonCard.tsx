@@ -1,9 +1,10 @@
 import './PokemonCard.css'
 import CardDescription from "../../Molecules/CardDescription/CardDescription"
 import MultipleLabels from '../../Molecules/MultipleLabels/MultipleLabels'
+import type { Label } from '../../Types/Label'
 
 
-function PokemonCard({number,name,labels, imgSrc}:{number:string,name:string,labels:any[],imgSrc:string}) {
+function PokemonCard({number,name,labels, imgSrc}:{number:string,name:string,labels:Label[],imgSrc:string}) {
   return (
     <div className="PokemonCard">
       <img className='PokemonCardDots' src='/backgrounds/Pattern.png'/>
