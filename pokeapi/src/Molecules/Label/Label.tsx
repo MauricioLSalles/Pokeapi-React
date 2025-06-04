@@ -4,9 +4,9 @@ import './Label.css'
 function Label({label, color}:{label:string, color:string}) {
   return (
     <div className="label" style={{backgroundColor:color}}>
-      <svg className='label-icon'></svg>
+      <img src='/types-icons/Fairy.svg' className='label-icon'></img>
       <LabelText label={label}/>
-      </div>
+    </div>
   )
 }
 

@@ -2,19 +2,15 @@
     color: #FFFFFF;
     font-family: 'roboto';
     font-size: 15px;
-    width: 62px;
-    height: 25px;
     gap: 5px;
     border-radius: 3px;
-    padding: 5px;
+    padding: 13px 5px;
     display: flex;
     align-items: center;
-    padding: 0;
 }
 
 .label-icon{
     width: 15px;
     height: 15px;
-    background: #000;
 
 }
