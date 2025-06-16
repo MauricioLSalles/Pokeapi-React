@@ -12,7 +12,10 @@ function PokemonCard({number,name,labels, imgSrc}:{number:string,name:string,lab
           <CardDescription number={number} name={name}/>
           <MultipleLabels labels={labels}/>
       </div>
-      <img src={imgSrc} className='PokemonCard-image'/>
+      <div className='PokemonCard-image-container'>
+        <img src={"/backgrounds/pokeball.png"} className='PokemonCard-image-background'/>
+        <img src={imgSrc} className='PokemonCard-image'/>
+      </div>
     </div>
   )
 }
