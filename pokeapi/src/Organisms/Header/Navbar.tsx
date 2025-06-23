@@ -13,7 +13,7 @@ export default function Navbar(props: Props) {
   const { links, className, ...ElementProps } = props;
   const classname = className ?? "";
   return (
-    <div className={`${classname} header`} {...ElementProps}>
+    <div className={`${classname} navbar`} {...ElementProps}>
       <HeaderTitle text="Pokedex" />
       <HeaderLinks links={links} />
     </div>
