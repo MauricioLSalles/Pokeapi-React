@@ -9,9 +9,9 @@ type Props = CustomProps & React.ButtonHTMLAttributes<HTMLDivElement>;
 export default function HeaderLinks(props: Props) {
   const { links, ...ElementProps } = props;
   return (
-    <div {...ElementProps}>
+    <div style={{ display: 'flex', gap: '12px' }} {...ElementProps}>
       {links.map((link: Link) =>
-        <span>{link.name}</span>
+        <span style={{ fontSize: '1.3rem' }}>{link.name}</span>
       )}
     </div>
   )
