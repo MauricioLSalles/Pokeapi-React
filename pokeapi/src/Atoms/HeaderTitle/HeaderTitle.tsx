@@ -10,7 +10,7 @@ function HeaderTitle(props:Props):ReactElement{
   const {text, ...TitleProps} = props;
   return (
     <div {...TitleProps}>
-        <img src={"/icons/pokeball.png"} className='HeaderTitle-icon'/>
+        <img src={"/icons/pokeball.svg"} className='HeaderTitle-icon'/>
         <span className="header-title">
             {text}
         </span>
