@@ -6,13 +6,13 @@ type CustomProps = {
 
 type Props = CustomProps & React.ButtonHTMLAttributes<HTMLDivElement>;
 
-export default function HeaderLinks(props:Props) {
-  const {links, ...ElementProps} = props;
+export default function HeaderLinks(props: Props) {
+  const { links, ...ElementProps } = props;
   return (
     <div {...ElementProps}>
-        {links.map((link:Link) => 
-            <span>{link.name}</span>
-        )}
+      {links.map((link: Link) =>
+        <span>{link.name}</span>
+      )}
     </div>
   )
 }

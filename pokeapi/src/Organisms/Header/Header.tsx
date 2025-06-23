@@ -8,12 +8,12 @@ type CustomProps = {
 
 type Props = CustomProps & React.ButtonHTMLAttributes<HTMLDivElement>;
 
-export default function Header(props:Props) {
-  const {links, ...ElementProps} = props;
+export default function Header(props: Props) {
+  const { links, ...ElementProps } = props;
   return (
     <div {...ElementProps}>
-        <HeaderTitle text="Pokedex"/>
-        <HeaderLinks links={links}/>
+      <HeaderTitle text="Pokedex" />
+      <HeaderLinks links={links} />
     </div>
   )
 }

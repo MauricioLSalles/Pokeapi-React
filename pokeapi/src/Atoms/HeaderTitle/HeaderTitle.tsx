@@ -6,14 +6,14 @@ type CustomProps = {
 
 type Props = CustomProps & React.ButtonHTMLAttributes<HTMLDivElement>;
 
-function HeaderTitle(props:Props):ReactElement{
-  const {text, ...TitleProps} = props;
+function HeaderTitle(props: Props): ReactElement {
+  const { text, ...TitleProps } = props;
   return (
     <div {...TitleProps}>
-        <img src={"/icons/pokeball.svg"} className='HeaderTitle-icon'/>
-        <span className="header-title">
-            {text}
-        </span>
+      <img src={"/icons/pokeball.svg"} className='HeaderTitle-icon' />
+      <span className="header-title">
+        {text}
+      </span>
     </div>
   )
 }

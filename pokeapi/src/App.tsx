@@ -2,11 +2,11 @@ import Layout from "./templates/Layout"
 
 function App() {
 
- 
+
 
   return (
     <>
-      <Layout/>
+      <Layout />
     </>
   )
 }
