@@ -1,4 +1,6 @@
-function layout() {
+import './layout.css';
+
+function Layout() {
   return (
     <div>
         <header className='header'></header>
@@ -8,4 +10,4 @@ function layout() {
   )
 }
 
-export default layout
+export default Layout

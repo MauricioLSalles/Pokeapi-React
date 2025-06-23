@@ -1,4 +1,4 @@
-import PokemonList from './Organisms/PokemonList/PokemonList';
+import Layout from './templates/layout';
 
 function App() {
 
@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <PokemonList/>
+      <Layout/>
     </>
   )
 }
