@@ -1,5 +1,5 @@
-import { type ReactElement } from "react"
-
+import { type ReactElement } from "react";
+import './HeaderTitle.css';
 type CustomProps = {
   text: string
 };
