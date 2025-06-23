@@ -1,0 +1,13 @@
+import React from 'react'
+
+function layout() {
+  return (
+    <div>
+        <header className='header'></header>
+        <section className='content'></section>
+        <footer className='footer'></footer>
+    </div>
+  )
+}
+
+export default layout
