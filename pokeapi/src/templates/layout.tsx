@@ -1,4 +1,4 @@
-import Header from '../Organisms/Header/Header';
+import Navbar from '../Organisms/Header/Navbar';
 import type { Link } from '../Types/Link';
 import './layout.css';
 
@@ -17,7 +17,7 @@ function Layout() {
   ]
   return (
     <div>
-      <header className='header'><Header links={links} /></header>
+      <header className='header'><Navbar links={links} /></header>
       <section className='content'></section>
       <footer className='footer'></footer>
     </div>
