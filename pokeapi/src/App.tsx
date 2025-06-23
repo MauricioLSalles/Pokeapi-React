@@ -1,4 +1,4 @@
-import Layout from './templates/layout';
+import Layout from "./templates/Layout"
 
 function App() {
 

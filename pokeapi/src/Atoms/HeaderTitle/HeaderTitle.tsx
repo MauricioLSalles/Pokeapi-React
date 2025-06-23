@@ -1,11 +1,18 @@
 import { type ReactElement } from "react"
 
-function HeaderTitle():ReactElement{
+type CustomProps = {
+  text: string
+};
+
+type Props = CustomProps & React.ButtonHTMLAttributes<HTMLDivElement>;
+
+function HeaderTitle(props:Props):ReactElement{
+  const {text, ...TitleProps} = props;
   return (
-    <div>
+    <div {...TitleProps}>
         <img src={"/icons/pokeball.png"} className='HeaderTitle-icon'/>
         <span className="header-title">
-            HeaderTitle
+            {text}
         </span>
     </div>
   )
