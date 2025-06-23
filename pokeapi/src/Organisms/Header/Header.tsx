@@ -1,3 +1,5 @@
+import HeaderTitle from "../../Atoms/HeaderTitle/HeaderTitle";
+import HeaderLinks from "../../Molecules/HeaderLinks/HeaderLinks";
 import type { Link } from "../../Types/Link";
 
 type CustomProps = {
@@ -6,13 +8,12 @@ type CustomProps = {
 
 type Props = CustomProps & React.ButtonHTMLAttributes<HTMLDivElement>;
 
-export default function HeaderLinks(props:Props) {
+export default function Header(props:Props) {
   const {links, ...ElementProps} = props;
   return (
     <div {...ElementProps}>
-        {links.map((link:Link) => 
-            <span>{link.name}</span>
-        )}
+        <HeaderTitle text="Pokedex"/>
+        <HeaderLinks links={links}/>
     </div>
   )
 }
