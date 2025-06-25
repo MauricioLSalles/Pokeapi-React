@@ -1,9 +1,9 @@
 .PokemonList {
   display: flex;
   flex-wrap: wrap;
-  padding: 0;
+  padding: 3rem;
   justify-content: center;
-  gap: 40px;
+  gap: 4rem;
 }
 
 .PokemonList > * {
