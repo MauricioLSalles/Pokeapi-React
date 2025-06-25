@@ -1,6 +1,6 @@
 import Navbar from "../Organisms/Header/Navbar";
 import PokemonList from "../Organisms/PokemonList/PokemonList";
-import Search from "../Organisms/Search/Search";
+import SearchSection from "../Organisms/SearchSection/SearchSection";
 import type { Link } from "../Types/Link";
 import "./layout.css";
 
@@ -24,8 +24,8 @@ function Layout() {
       <header className="header">
         <Navbar links={links} />
       </header>
-      <div className="search">
-        <Search />
+      <div className="secondHeader">
+        <SearchSection />
       </div>
       <section className="content">
         <PokemonList />
