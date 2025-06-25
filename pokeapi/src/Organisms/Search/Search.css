@@ -1,0 +1,12 @@
+.Search {
+  background-color: #ea5d60;
+  padding: 7rem 28rem;
+  align-items: center;
+  text-align: center;
+}
+
+.searchInfo {
+  display: block;
+  color: white;
+  margin-block: 1rem auto;
+}
