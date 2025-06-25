@@ -1,4 +1,25 @@
+:root {
+  --type-water: #4a90da;
+  --type-dark: #58575f;
+  --type-steel: #417d9a;
+  --type-rock: #baab82;
+  --type-psychic: #ea5d60;
+  --type-poison: #a552cc;
+  --type-normal: #9da0aa;
+  --type-ice: #61cec0;
+  --type-ground: #dd7748;
+  --type-grass: #62b957;
+  --type-ghost: #556aae;
+  --type-flying: #748fc9;
+  --type-fire: #fd7d24;
+  --type-fighting: #d04164;
+  --type-fairy: #ed6ec7;
+  --type-electric: #eed535;
+  --type-dragon: #0f6ac0;
+  --type-bug: #8cb230;
+}
+
 body {
-    font-family: Roboto;
-    margin: 0;
+  font-family: Roboto;
+  margin: 0;
 }

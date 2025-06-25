@@ -1,13 +1,13 @@
-import LabelText from '../../Atoms/LabelText/LabelText'
-import './Label.css'
+import LabelText from "../../Atoms/LabelText/LabelText";
+import "./Label.css";
 
-function Label({label, color}:{label:string, color:string}) {
+function Label({ label }: { label: string }) {
   return (
-    <div className="label" style={{backgroundColor:color}}>
-      <img src='/types-icons/Fairy.svg' className='label-icon'></img>
-      <LabelText label={label}/>
+    <div style={{ backgroundColor: `var(--type-${label})` }} className="label">
+      <img src="/types-icons/Fairy.svg" className="label-icon"></img>
+      <LabelText label={label} />
     </div>
-  )
+  );
 }
 
-export default Label
+export default Label;
