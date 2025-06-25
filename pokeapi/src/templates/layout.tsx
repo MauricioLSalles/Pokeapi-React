@@ -1,4 +1,5 @@
 import Navbar from "../Organisms/Header/Navbar";
+import PokemonList from "../Organisms/PokemonList/PokemonList";
 import Search from "../Organisms/Search/Search";
 import type { Link } from "../Types/Link";
 import "./layout.css";
@@ -26,7 +27,9 @@ function Layout() {
       <div className="search">
         <Search />
       </div>
-      <section className="content"></section>
+      <section className="content">
+        <PokemonList />
+      </section>
       <footer className="footer"></footer>
     </div>
   );

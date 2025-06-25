@@ -1,12 +1,11 @@
-.PokemonList{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+.PokemonList {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  justify-content: center;
+  gap: 40px;
 }
 
-.PokemonList> * {
-    flex: 0 0 calc(30% - 30px);
-    min-width: 350px;
-    max-width: 440px;
+.PokemonList > * {
+  flex: 0 0 350px;
 }
