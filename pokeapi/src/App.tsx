@@ -1,12 +1,12 @@
-import Layout from "./templates/Layout"
 import './App.css'
+import PokemonListPage from './Pages/PokemonListPage'
 function App() {
 
 
 
   return (
     <>
-      <Layout />
+      <PokemonListPage />
     </>
   )
 }

@@ -1,36 +1,18 @@
-import Navbar from "../Organisms/Header/Navbar";
-import PokemonList from "../Organisms/PokemonList/PokemonList";
-import SearchSection from "../Organisms/SearchSection/SearchSection";
-import type { Link } from "../Types/Link";
+import type { ReactElement } from "react";
 import "./layout.css";
 
-function Layout() {
-  const links: Link[] = [
-    {
-      name: "Home",
-      link: "home",
-    },
-    {
-      name: "Types",
-      link: "types",
-    },
-    {
-      name: "Generations",
-      link: "generations",
-    },
-  ];
+function Layout({header, secondHeader, content}:{header:ReactElement, secondHeader:ReactElement, content:ReactElement}) {
   return (
     <div>
       <header className="header">
-        <Navbar links={links} />
+        {header}
       </header>
       <div className="secondHeader">
-        <SearchSection />
+        {secondHeader}
       </div>
       <section className="content">
-        <PokemonList />
+        {content}
       </section>
-      <footer className="footer"></footer>
     </div>
   );
 }

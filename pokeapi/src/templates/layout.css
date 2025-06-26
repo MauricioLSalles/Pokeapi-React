@@ -1,3 +1,13 @@
-.header{
-    background-color: #FFFFFF;
+.container {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 0.4fr 0.7fr 1.9fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "header header header"
+    "secondHeader secondHeader secondHeader"
+    "content content content"; 
 }
+.header { grid-area: header; }
+.secondHeader { grid-area: secondHeader; }
+.Content { grid-area: Content; }
