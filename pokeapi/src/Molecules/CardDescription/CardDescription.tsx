@@ -6,7 +6,6 @@ function CardDescription({number,name}:{number:string,name:string}) {
   return (
     <div className="CardDescription">
         <CardNumber number={number}/>
-        <br/>
         <CardHeader name={name}/>
     </div>
   )
