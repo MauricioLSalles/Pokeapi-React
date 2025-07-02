@@ -2,7 +2,7 @@ import "./CardNumber.css"
 
 function CardNumber({number}:{number:string}) {
   return (
-    <span className="CardNumber">
+    <span className="CardNumber text-large">
         #{number}
     </span>
   )
