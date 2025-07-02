@@ -1,8 +1,6 @@
 .MultipleLabels{
+    margin: 50px 0 0 0;
     display: flex;
-    width: fit-content;
-    height: 20px;
     gap: 5px;
-    line-height: 20px;
 
 }
