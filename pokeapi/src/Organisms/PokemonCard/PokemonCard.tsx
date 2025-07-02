@@ -16,7 +16,7 @@ function PokemonCard({
 }) {
   return (
     <div
-      style={{ backgroundColor: `var(--type-${labels[0].type.name}` }}
+      style={{ backgroundColor: `var(--bg-type-${labels[0].type.name}` }}
       className="PokemonCard"
     >
       <img className="PokemonCardDots" src="/backgrounds/Pattern.png" />

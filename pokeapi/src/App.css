@@ -17,6 +17,25 @@
   --type-electric: #eed535;
   --type-dragon: #0f6ac0;
   --type-bug: #8cb230;
+
+  --bg-type-water: #58ABF6;
+  --bg-type-dark: #6F6E78;
+  --bg-type-steel: #4C91B2;
+  --bg-type-rock: #D4C294;
+  --bg-type-psychic: #FF6568;
+  --bg-type-poison: #9F6E97;
+  --bg-type-normal: #B5B9C4;
+  --bg-type-ice: #91D8DF;
+  --bg-type-ground: #F78551;
+  --bg-type-grass: #8BBE8A;
+  --bg-type-ghost: #8571BE;
+  --bg-type-flying: #83A2E3;
+  --bg-type-fire: #FFA756;
+  --bg-type-fighting: #EB4971;
+  --bg-type-fairy: #EBA8C3;
+  --bg-type-electric: #F2CB55;
+  --bg-type-dragon: #7383B9;
+  --bg-type-bug: #8BD674;
 }
 
 body {
