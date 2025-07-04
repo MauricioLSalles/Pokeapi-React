@@ -4,8 +4,7 @@ import { PokeListContext } from "../../CustomHooks/CreateContext";
 
 type Props = React.HtmlHTMLAttributes<HTMLDivElement>;
 
-export default function InputSearch(props: Props): ReactElement {
-  const { className, ...ElementProps } = props;
+export default function InputSearch({ className = "", ...ElementProps }: Props): ReactElement {
   const pokeListContext = useContext(PokeListContext);
 
   function search() {
