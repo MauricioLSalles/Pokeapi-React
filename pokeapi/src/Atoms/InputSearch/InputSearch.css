@@ -1,14 +1,14 @@
 .inputSearch {
-  display: block;
   background-color: white;
   box-shadow: 0px 4px 4px 0px #00000040;
   display: flex;
+  width: 100%;
   align-items: center;
   padding: 0rem 2rem;
   border-radius: 8px;
 }
 
-.inputSearch > input {
+.inputSearch>input {
   flex-grow: 1;
   background-color: inherit;
   border: none;
@@ -26,7 +26,7 @@
   vertical-align: middle;
 }
 
-.inputSearch > input:focus {
+.inputSearch>input:focus {
   border: none;
   outline: none;
 }

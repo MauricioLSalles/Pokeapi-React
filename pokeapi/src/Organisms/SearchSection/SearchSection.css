@@ -1,12 +1,12 @@
 .searchSection {
   background-color: #ea5d60;
+  flex-grow: 1;
   display: flex;
-  padding: 5rem 0;
-  gap: 3rem;
+  gap: 5rem;
   justify-content: space-between;
+  align-items: center;
 }
 
-.searchSection > img {
-  display: block;
+.searchSection>img {
   flex-grow: 1;
 }

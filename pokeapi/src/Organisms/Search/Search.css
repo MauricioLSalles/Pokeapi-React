@@ -1,9 +1,14 @@
 .Search {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: center;
+  justify-items: center;
 }
 
 .searchInfo {
+  flex-grow: 2;
   display: block;
   color: white;
   margin-block: 1rem auto;

@@ -3,7 +3,7 @@ import "./layout.css";
 
 function Layout({ header, secondHeader, content }: { header: ReactElement, secondHeader: ReactElement, content: ReactElement }) {
   return (
-    <div>
+    <div className="container">
       <header className="header">
         {header}
       </header>
