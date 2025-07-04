@@ -43,7 +43,7 @@ body {
   margin: 0;
 }
 
-.text-small{
+.text-small {
   font-family: Roboto;
   font-weight: 400;
   font-size: 12px;
@@ -52,7 +52,7 @@ body {
   text-align: right;
 }
 
-.text-normal{
+.text-normal {
   font-family: Roboto;
   font-weight: 400;
   font-size: 20px;
@@ -61,7 +61,7 @@ body {
   text-align: right;
 }
 
-.text-large{
+.text-large {
   font-family: Roboto;
   font-weight: 700;
   font-size: 24px;
@@ -70,7 +70,7 @@ body {
   text-align: right;
 }
 
-.text-huge{
+.text-huge {
   font-family: Roboto;
   font-weight: 700;
   font-size: 30px;
@@ -79,7 +79,7 @@ body {
   text-align: right;
 }
 
-.text-enourmous{
+.text-enourmous {
   font-family: Roboto;
   font-weight: 700;
   font-size: 36px;
@@ -87,7 +87,7 @@ body {
   letter-spacing: 0%;
 }
 
-.text-biggest{
+.text-biggest {
   font-family: Roboto;
   font-weight: 700;
   font-size: 96px;
