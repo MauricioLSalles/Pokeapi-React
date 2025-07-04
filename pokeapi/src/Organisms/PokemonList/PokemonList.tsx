@@ -66,8 +66,8 @@ function PokemonList(props: Props) {
         ))
       }
     </div>
-    {listContext?.list.length === 0 ? (<div>pokemon not found</div>) : (<></>)}
-    <div ref={loader}>{loading ? "loading..." : "."}</div>
+    {(!loading && listContext?.list.length === 0) ? (<div>pokemon not found</div>) : (<></>)}
+    <div style={{ height: 1 }} ref={loader}>{loading ? "loading..." : " "}</div>
   </>
   );
 }
