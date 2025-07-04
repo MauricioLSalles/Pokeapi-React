@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Navbar from "../Organisms/Header/Navbar";
 import PokemonList from "../Organisms/PokemonList/PokemonList";
 import SearchSection from "../Organisms/SearchSection/SearchSection";
@@ -11,18 +11,10 @@ import { PokeListContext } from "../CustomHooks/CreateContext";
 
 export default function PokemonListPage() {
 
-  const [searchParam, setSearchParam] = useState<string>("");
   const [list, setList] = useState<Pokemon[]>([]);
   const loadedList = useRef<Pokemon[]>([]);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
-  function search() {
-    console.log("search");
-    setList(loadedList.current.filter(pokemon => pokemon.name.includes(searchParam)));
-  }
-
-  useEffect(() => {
-    search();
-  }, [searchParam])
 
 
   const links: Link[] = [
@@ -41,7 +33,7 @@ export default function PokemonListPage() {
   ];
   return (
     <div>
-      <PokeListContext.Provider value={{ loadedList, list, setList, searchParam, setSearchParam }}>
+      <PokeListContext.Provider value={{ loadedList, list, setList, inputRef }}>
         <Layout
           header={<Navbar links={links} />}
           secondHeader={<SearchSection />}

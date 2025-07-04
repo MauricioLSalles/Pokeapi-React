@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import UseGet from "../../CustomHooks/UseGet";
+import { useContext, useEffect, useRef, useState } from "react";
 import type { Pokemon } from "../../Types/Pokemon";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import "./PokemonList.css";
@@ -10,31 +9,50 @@ import { PokeListContext } from "../../CustomHooks/CreateContext";
 type Props = React.HTMLAttributes<HTMLDivElement>;
 
 function PokemonList(props: Props) {
+  const offset = useRef<number>(0)
+  const loader = useRef(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const listContext = useContext(PokeListContext);
-  const {data, error} = UseGet<PokemonListsResponse>("https://pokeapi.co/api/v2/pokemon?limit=5&offset=0");
-  const [loading, setLoading] = useState(false);
 
-  async function loadList(list:PokemonListsResponse ) {
+  async function loadList(list: PokemonListsResponse) {
     for (let i = 0; i < list.results.length; i++) {
       const pokeResult = await ApiGet<Pokemon>(list.results[i].url)
-      if(pokeResult.data !== null && listContext)
-        listContext.loadedList.current[i] = pokeResult.data
+      if (pokeResult.data !== null && listContext)
+        listContext.loadedList.current[pokeResult.data.id] = pokeResult.data
     }
-
-    setLoading(false);
     listContext?.setList(listContext.loadedList.current)
+    console.log(listContext?.list);
+    setLoading(false);
   }
 
+
+  async function addPokemons() {
+    const res = await ApiGet<PokemonListsResponse>(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${offset.current}`);
+    if (res.data)
+      loadList(res.data);
+  }
+
+  console.log("render");
   useEffect(() => {
-    if(data === null) return;
-    loadList(data);
-  },[data])
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && listContext?.inputRef.current?.value === "") {
+        setLoading(true);
+        addPokemons();
+        offset.current += 10
+      }
+    }
+      , { threshold: 0 });
+    if (loader.current) {
+      observer.observe(loader.current);
+    }
+    return () => {
+      if (loader.current) {
+        observer.unobserve(loader.current);
+      }
+    };
+  }, []);
 
-  if(loading) return <div>Loading...</div>;
-
-  if(error) return <div>error loading list</div>
-
-  return (
+  return (<>
     <div {...props} className="PokemonList">
       {
         listContext?.list.map((pokemon, id) => (
@@ -48,6 +66,8 @@ function PokemonList(props: Props) {
         ))
       }
     </div>
+    <div ref={loader}>{loading ? "loading..." : ""}</div>
+  </>
   );
 }
 
