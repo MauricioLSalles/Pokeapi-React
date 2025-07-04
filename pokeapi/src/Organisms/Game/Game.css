@@ -1,0 +1,14 @@
+.game {
+    align-content: center;
+    justify-items: center;
+    flex-grow: 1;
+}
+
+.guessPokemon {
+    display: block;
+}
+
+.gameButtons {
+    display: flex;
+    gap: 20px;
+}
