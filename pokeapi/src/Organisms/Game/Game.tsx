@@ -1,45 +1,59 @@
-import { useRef, type ReactElement } from "react";
+import { useEffect, useRef, useState, type ReactElement } from "react";
 import Button from "../../Atoms/Button/Button";
 import "./Game.css";
-import type { Response } from "../../Types/Response";
-import UseGet from "../../CustomHooks/UseGet";
+import ApiGet from "../../CustomHooks/ApiGet";
 import type { Pokemon } from "../../Types/Pokemon";
+import type { Response } from "../../Types/Response";
 
 export default function Game(): ReactElement {
-  const response: Response<Pokemon> = UseGet<Pokemon>(
-    "https://pokeapi.co/api/v2/pokemon/1/"
-  );
-  const response1: Response<Pokemon> = UseGet<Pokemon>(
-    "https://pokeapi.co/api/v2/pokemon/2/"
-  );
-  const response2: Response<Pokemon> = UseGet<Pokemon>(
-    "https://pokeapi.co/api/v2/pokemon/3/"
-  );
-  const response3: Response<Pokemon> = UseGet<Pokemon>(
-    "https://pokeapi.co/api/v2/pokemon/4/"
-  );
+  const [list, setList] = useState<Response<Pokemon>[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  async function loadList() {
+    const lisResponses: Response<Pokemon>[] = [
+      await ApiGet<Pokemon>(
+        `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
+      ),
+      await ApiGet<Pokemon>(
+        `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
+      ),
+      await ApiGet<Pokemon>(
+        `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
+      ),
+      await ApiGet<Pokemon>(
+        `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
+      ),
+    ];
+    setList(lisResponses);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    loadList();
+  }, []);
+
+  const correct = Math.floor(Math.random() * 3);
 
   const imageRef = useRef<HTMLImageElement | null>(null);
 
-  function reveal() {
-    if (imageRef.current) {
+  function reveal(id: number) {
+    if (imageRef.current && id === correct) {
       imageRef.current.className = "guessPokemonImage show";
     }
   }
 
-  if (response.loading) return <div>loading ...</div>;
+  if (loading) return <div>loading ...</div>;
   return (
     <div className="game">
       <img
         ref={imageRef}
-        src={response.data?.sprites.front_default}
+        src={list[correct].data?.sprites.front_default}
         className={`guessPokemonImage `}
       />
       <div className="gameButtons">
-        <Button onClick={reveal} text={response.data?.name ?? ""} />
-        <Button text={response1.data?.name ?? ""} />
-        <Button text={response2.data?.name ?? ""} />
-        <Button text={response3.data?.name ?? ""} />
+        <Button onClick={() => reveal(0)} text={list[0].data?.name ?? ""} />
+        <Button onClick={() => reveal(1)} text={list[1].data?.name ?? ""} />
+        <Button onClick={() => reveal(2)} text={list[2].data?.name ?? ""} />
+        <Button onClick={() => reveal(3)} text={list[3].data?.name ?? ""} />
       </div>
     </div>
   );
