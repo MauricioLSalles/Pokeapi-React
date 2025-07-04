@@ -1,13 +1,13 @@
 import { StrictMode } from 'react'
 import './App.css'
-import PokemonListPage from './Pages/PokemonListPage'
+import Router from './Router'
 function App() {
 
 
 
   return (
     <StrictMode>
-      <PokemonListPage />
+      <Router />
     </StrictMode>
   )
 }
