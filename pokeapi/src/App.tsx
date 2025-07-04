@@ -1,3 +1,4 @@
+import { StrictMode } from 'react'
 import './App.css'
 import PokemonListPage from './Pages/PokemonListPage'
 function App() {
@@ -5,9 +6,9 @@ function App() {
 
 
   return (
-    <>
+    <StrictMode>
       <PokemonListPage />
-    </>
+    </StrictMode>
   )
 }
 
