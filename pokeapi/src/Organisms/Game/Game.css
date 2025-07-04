@@ -5,12 +5,14 @@
   flex-grow: 1;
 }
 
-.guessPokemonBackground {
+.guessPokemonImage {
   display: block;
-  background-color: black;
-  width: 100px;
-  height: 100px;
-  margin-bottom: 60px;
+  filter: brightness(0) saturate(100%);
+  transition: filter 1s ease;
+}
+
+.show {
+  filter: brightness(100%) saturate(50%);
 }
 
 .gameButtons {
