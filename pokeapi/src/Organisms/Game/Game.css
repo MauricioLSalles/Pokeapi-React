@@ -1,14 +1,19 @@
 .game {
-    align-content: center;
-    justify-items: center;
-    flex-grow: 1;
+  align-content: center;
+  justify-items: center;
+  padding-bottom: 5%;
+  flex-grow: 1;
 }
 
-.guessPokemon {
-    display: block;
+.guessPokemonBackground {
+  display: block;
+  background-color: black;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 60px;
 }
 
 .gameButtons {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
 }
