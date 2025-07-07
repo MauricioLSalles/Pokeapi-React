@@ -6,6 +6,6 @@
   gap: 4rem;
 }
 
-.PokemonList>* {
-  flex: 0 0 500px;
+.PokemonList > * {
+  flex: 0 0 25vw;
 }
