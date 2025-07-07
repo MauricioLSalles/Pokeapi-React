@@ -15,7 +15,7 @@ function PokemonCard({
   imgSrc: string;
 }) {
   return (
-    <div
+    <li
       style={{ backgroundColor: `var(--bg-type-${labels[0].type.name}` }}
       className="PokemonCard"
     >
@@ -35,7 +35,7 @@ function PokemonCard({
       <div className="PokemonCard-image-container">
         <img src={imgSrc} className="PokemonCard-image" />
       </div>
-    </div>
+    </li>
   );
 }
 
