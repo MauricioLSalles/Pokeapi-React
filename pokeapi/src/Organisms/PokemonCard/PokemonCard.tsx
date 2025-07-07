@@ -19,17 +19,20 @@ function PokemonCard({
       style={{ backgroundColor: `var(--bg-type-${labels[0].type.name}` }}
       className="PokemonCard"
     >
-      <img className="PokemonCardDots" src="/backgrounds/Pattern.png" />
       <img
-          src={"/backgrounds/pokeball.png"}
-          className="PokemonCard-image-background"
-        />
+        className="PokemonCardDots"
+        alt={name}
+        src="/backgrounds/Pattern.png"
+      />
+      <img
+        src={"/backgrounds/pokeball.png"}
+        className="PokemonCard-image-background"
+      />
       <div className="PokemonCard-description">
         <CardDescription number={number} name={name} />
         <MultipleLabels labels={labels} />
       </div>
       <div className="PokemonCard-image-container">
-        
         <img src={imgSrc} className="PokemonCard-image" />
       </div>
     </div>
