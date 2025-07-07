@@ -7,6 +7,12 @@
   align-items: center;
 }
 
-.searchSection>img {
+.searchSection > img {
   flex-grow: 1;
+}
+
+@media (max-width: 768px) {
+  .searchSection > img {
+    display: none;
+  }
 }

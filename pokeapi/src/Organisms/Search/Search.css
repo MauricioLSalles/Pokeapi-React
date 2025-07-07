@@ -1,5 +1,5 @@
 .Search {
-  flex-grow: 1;
+  flex-grow: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,4 +12,12 @@
   display: block;
   color: white;
   margin-block: 1rem auto;
+}
+
+@media (max-width: 768px) {
+  .Search {
+    flex-grow: 0;
+    margin: auto;
+    width: 70%;
+  }
 }
