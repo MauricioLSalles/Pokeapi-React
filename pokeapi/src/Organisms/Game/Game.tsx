@@ -4,10 +4,18 @@ import "./Game.css";
 import ApiGet from "../../CustomHooks/ApiGet";
 import type { Pokemon } from "../../Types/Pokemon";
 import type { Response } from "../../Types/Response";
+import LoadingScreen from "../../Molecules/LoadingScreen/LoadingScreen";
+import ErrorScreen from "../ErrorScreen/ErrorScreen";
 
 export default function Game(): ReactElement {
   const [list, setList] = useState<Response<Pokemon>[]>([]);
+  const [lose, setLose] = useState<boolean>();
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<number>(200);
+  const tries = useRef<number>(0);
+  const correct = useRef<number>(0);
+  const imageRef = useRef<HTMLImageElement | null>(null);
+
   async function loadList() {
     const lisResponses: Response<Pokemon>[] = [
       await ApiGet<Pokemon>(
@@ -23,30 +31,47 @@ export default function Game(): ReactElement {
         `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
       ),
     ];
+    setError(
+      lisResponses.reduce(
+        (prev, current) => (current.error ? current.status : prev),
+        200
+      )
+    );
     setList(lisResponses);
     setLoading(false);
+    correct.current = Math.floor(Math.random() * 3);
   }
 
   useEffect(() => {
     loadList();
   }, []);
 
-  const correct = Math.floor(Math.random() * 3);
-
-  const imageRef = useRef<HTMLImageElement | null>(null);
-
   function reveal(id: number) {
-    if (imageRef.current && id === correct) {
-      imageRef.current.className = "guessPokemonImage show";
+    if (imageRef.current && id === correct.current) {
+      {
+        imageRef.current.className = "guessPokemonImage show";
+      }
+    }
+    tries.current++;
+    if (tries.current >= 3) {
+      setLose(true);
+      tries.current = 0;
     }
   }
 
-  if (loading) return <div>loading ...</div>;
+  if (loading) return <LoadingScreen />;
+  if (error >= 300)
+    return (
+      <ErrorScreen
+        error={`there was a error trying to connect.\n Code: ${error}`}
+      />
+    );
+  if (lose) return <div>you lose</div>;
   return (
     <div className="game">
       <img
         ref={imageRef}
-        src={list[correct].data?.sprites.front_default}
+        src={list[correct.current].data?.sprites.front_default}
         className={`guessPokemonImage `}
       />
       <div className="gameButtons">
