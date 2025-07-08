@@ -6,6 +6,7 @@ import type { Pokemon } from "../../Types/Pokemon";
 import type { Response } from "../../Types/Response";
 import LoadingScreen from "../../Molecules/LoadingScreen/LoadingScreen";
 import ErrorScreen from "../ErrorScreen/ErrorScreen";
+import RestartGame from "../../Molecules/RestartGame/RestartGame";
 
 export default function Game(): ReactElement {
   const [list, setList] = useState<Response<Pokemon>[]>([]);
@@ -13,10 +14,12 @@ export default function Game(): ReactElement {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<number>(200);
   const tries = useRef<number>(0);
+  const score = useRef<number>(0);
   const correct = useRef<number>(0);
   const imageRef = useRef<HTMLImageElement | null>(null);
 
   async function loadList() {
+    setLoading(true);
     const lisResponses: Response<Pokemon>[] = [
       await ApiGet<Pokemon>(
         `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
@@ -50,13 +53,20 @@ export default function Game(): ReactElement {
     if (imageRef.current && id === correct.current) {
       {
         imageRef.current.className = "guessPokemonImage show";
+        setTimeout(() => loadList(), 2000);
       }
-    }
-    tries.current++;
+    } else tries.current++;
     if (tries.current >= 3) {
       setLose(true);
       tries.current = 0;
     }
+  }
+
+  function restart() {
+    setLose(false);
+    score.current = 0;
+    tries.current = 0;
+    loadList();
   }
 
   if (loading) return <LoadingScreen />;
@@ -66,7 +76,7 @@ export default function Game(): ReactElement {
         error={`there was a error trying to connect.\n Code: ${error}`}
       />
     );
-  if (lose) return <div>you lose</div>;
+  if (lose) return <RestartGame score={score.current} restart={restart} />;
   return (
     <div className="game">
       <img

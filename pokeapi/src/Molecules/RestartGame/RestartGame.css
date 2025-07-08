@@ -1,0 +1,9 @@
+.RestartGame {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 15%;
+  gap: 3vh;
+}
