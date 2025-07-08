@@ -1,0 +1,11 @@
+.errorImage {
+  height: 50%;
+}
+
+.errorContainer {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
