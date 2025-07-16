@@ -7,11 +7,14 @@ import ErrorScreen from "./Organisms/ErrorScreen/ErrorScreen";
 const router = createBrowserRouter([
   {
     path: "/",
-    Component: PokemonGame,
     children: [
       {
         path: "/pokedex",
         Component: PokemonListPage,
+      },
+      {
+        path: "/games",
+        Component: PokemonGame,
       },
     ],
     errorElement: (
