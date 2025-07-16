@@ -1,10 +1,10 @@
 import HeaderTitle from "../../Atoms/HeaderTitle/HeaderTitle";
 import HeaderLinks from "../../Molecules/HeaderLinks/HeaderLinks";
 import type { Link } from "../../Types/Link";
-import './Navbar.css'
+import "./Navbar.css";
 
 type CustomProps = {
-  links: Link[],
+  links: Link[];
 };
 
 type Props = CustomProps & React.ButtonHTMLAttributes<HTMLDivElement>;
@@ -17,5 +17,5 @@ export default function Navbar(props: Props) {
       <HeaderTitle text="Pokedex" />
       <HeaderLinks links={links} />
     </div>
-  )
+  );
 }
