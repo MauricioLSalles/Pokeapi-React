@@ -1,6 +1,5 @@
 .container {
   display: grid;
-  height: 100vh;
   grid-template-columns: 100%;
   grid-template-rows: 80px 300px 3fr;
   gap: 0px 0px;
@@ -10,17 +9,11 @@
     "content";
 }
 
-.header {
-  display: flex;
-  grid-area: header;
-  z-index: 500;
-}
-
 .secondHeader {
   grid-area: secondHeader;
   display: flex;
 }
 
-.content {
+.ListContent {
   grid-area: content;
 }
