@@ -1,4 +1,4 @@
-body {
+#root {
   display: grid;
   height: 100vh;
   grid-template-columns: 100vw;
