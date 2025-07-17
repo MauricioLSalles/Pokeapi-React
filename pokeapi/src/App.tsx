@@ -1,17 +1,15 @@
-import { StrictMode } from 'react'
-import './App.css'
-import Router from './Router'
+import { StrictMode } from "react";
+import "./App.css";
+import "./Layout.css";
+import Router from "./Router";
 function App() {
-
-
-
   return (
     <StrictMode>
-      <Router />
+      <div className="content">
+        <Router />
+      </div>
     </StrictMode>
-  )
+  );
 }
 
-export default App
-
-
+export default App;

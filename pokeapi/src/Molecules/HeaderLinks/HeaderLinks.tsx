@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import type { Link } from "../../Types/Link";
 
 type CustomProps = {
@@ -14,9 +15,9 @@ export default function HeaderLinks(props: Props) {
       {...ElementProps}
     >
       {links.map((link: Link, id: number) => (
-        <span key={id} style={{ fontSize: "1.3rem" }}>
+        <NavLink to={link.link} key={id} style={{ fontSize: "1.3rem" }}>
           {link.name}
-        </span>
+        </NavLink>
       ))}
     </ul>
   );

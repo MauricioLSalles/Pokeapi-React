@@ -1,0 +1,19 @@
+.container {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 80px 300px 3fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "header "
+    "secondHeader"
+    "content";
+}
+
+.secondHeader {
+  grid-area: secondHeader;
+  display: flex;
+}
+
+.ListContent {
+  grid-area: content;
+}

@@ -18,24 +18,24 @@
   --type-dragon: #0f6ac0;
   --type-bug: #8cb230;
 
-  --bg-type-water: #58ABF6;
-  --bg-type-dark: #6F6E78;
-  --bg-type-steel: #4C91B2;
-  --bg-type-rock: #D4C294;
-  --bg-type-psychic: #FF6568;
-  --bg-type-poison: #9F6E97;
-  --bg-type-normal: #B5B9C4;
-  --bg-type-ice: #91D8DF;
-  --bg-type-ground: #F78551;
-  --bg-type-grass: #8BBE8A;
-  --bg-type-ghost: #8571BE;
-  --bg-type-flying: #83A2E3;
-  --bg-type-fire: #FFA756;
-  --bg-type-fighting: #EB4971;
-  --bg-type-fairy: #EBA8C3;
-  --bg-type-electric: #F2CB55;
-  --bg-type-dragon: #7383B9;
-  --bg-type-bug: #8BD674;
+  --bg-type-water: #58abf6;
+  --bg-type-dark: #6f6e78;
+  --bg-type-steel: #4c91b2;
+  --bg-type-rock: #d4c294;
+  --bg-type-psychic: #ff6568;
+  --bg-type-poison: #9f6e97;
+  --bg-type-normal: #b5b9c4;
+  --bg-type-ice: #91d8df;
+  --bg-type-ground: #f78551;
+  --bg-type-grass: #8bbe8a;
+  --bg-type-ghost: #8571be;
+  --bg-type-flying: #83a2e3;
+  --bg-type-fire: #ffa756;
+  --bg-type-fighting: #eb4971;
+  --bg-type-fairy: #eba8c3;
+  --bg-type-electric: #f2cb55;
+  --bg-type-dragon: #7383b9;
+  --bg-type-bug: #8bd674;
 }
 
 body {

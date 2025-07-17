@@ -1,0 +1,19 @@
+.gameContainer {
+  display: grid;
+  grid-template-columns: 100vw;
+  grid-template-rows: 60px auto;
+  gap: 0px 0px;
+  grid-template-areas:
+    "gameSecondHeader"
+    "gameContent";
+}
+
+.gameSecondHeader {
+  grid-area: gameSecondHeader;
+  display: flex;
+}
+
+.gameContent {
+  grid-area: gameContent;
+  display: flex;
+}

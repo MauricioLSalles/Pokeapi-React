@@ -1,12 +1,11 @@
-.container {
+.page {
   display: grid;
   height: 100vh;
-  grid-template-columns: 100%;
-  grid-template-rows: 80px 300px 3fr;
+  grid-template-columns: 100vw;
+  grid-template-rows: 80px auto;
   gap: 0px 0px;
   grid-template-areas:
-    "header "
-    "secondHeader"
+    "header"
     "content";
 }
 
@@ -16,11 +15,7 @@
   z-index: 500;
 }
 
-.secondHeader {
-  grid-area: secondHeader;
-  display: flex;
-}
-
 .content {
   grid-area: content;
+  display: flex;
 }
