@@ -50,16 +50,25 @@ export default function Game(): ReactElement {
   }, []);
 
   function reveal(id: number) {
-    if (imageRef.current && id === correct.current) {
+    if (id === correct.current) {
       {
-        imageRef.current.className = "guessPokemonImage show";
-        setTimeout(() => loadList(), 2000);
         score.current++;
+        manageCorrectReveal();
       }
     } else tries.current++;
+    checkIfFailedGame();
+  }
+
+  function manageCorrectReveal() {
+    if (imageRef.current) {
+      imageRef.current.className = "guessPokemonImage show";
+      setTimeout(() => loadList(), 2000);
+    }
+  }
+
+  function checkIfFailedGame() {
     if (tries.current >= 3) {
       setLose(true);
-      tries.current = 0;
     }
   }
 
