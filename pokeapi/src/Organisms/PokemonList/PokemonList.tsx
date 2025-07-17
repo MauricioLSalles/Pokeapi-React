@@ -38,13 +38,13 @@ function PokemonList(props: Props): ReactElement {
       setLoading(false);
     }
 
-    async function addPokemons(oldOffset: number): Promise<void> {
+    async function addPokemons(): Promise<void> {
       const res: Response<PokemonListsResponse> =
         await ApiGet<PokemonListsResponse>(
-          `https://pokeapi.co/api/v2/pokemon?limit=10&offset=${offset.current}`
+          `https://pokeapi.co/api/v2/pokemon?limit=${partialOffset.current}&offset=${offset.current}`
         );
       if (res.data) loadList(res.data);
-      offset.current = oldOffset + partialOffset.current;
+      offset.current = offset.current + partialOffset.current;
     }
 
     const observer = new IntersectionObserver(
@@ -54,7 +54,7 @@ function PokemonList(props: Props): ReactElement {
           listContext?.inputRef.current?.value === ""
         ) {
           setLoading(true);
-          addPokemons(offset.current);
+          addPokemons();
         }
       },
       { threshold: 0 }
