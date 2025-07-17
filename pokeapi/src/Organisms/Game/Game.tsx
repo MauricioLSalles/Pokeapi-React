@@ -20,20 +20,20 @@ export default function Game(): ReactElement {
 
   async function loadList() {
     setLoading(true);
-    const lisResponses: Response<Pokemon>[] = [
-      await ApiGet<Pokemon>(
+    const lisResponses: Response<Pokemon>[] = await Promise.all([
+      ApiGet<Pokemon>(
         `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
       ),
-      await ApiGet<Pokemon>(
+      ApiGet<Pokemon>(
         `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
       ),
-      await ApiGet<Pokemon>(
+      ApiGet<Pokemon>(
         `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
       ),
-      await ApiGet<Pokemon>(
+      ApiGet<Pokemon>(
         `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
       ),
-    ];
+    ]);
     setError(
       lisResponses.reduce(
         (prev, current) => (current.error ? current.status : prev),
@@ -54,6 +54,7 @@ export default function Game(): ReactElement {
       {
         imageRef.current.className = "guessPokemonImage show";
         setTimeout(() => loadList(), 2000);
+        score.current++;
       }
     } else tries.current++;
     if (tries.current >= 3) {
