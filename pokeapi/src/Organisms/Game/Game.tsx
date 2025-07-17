@@ -18,9 +18,26 @@ export default function Game(): ReactElement {
   const correct = useRef<number>(0);
   const imageRef = useRef<HTMLImageElement | null>(null);
 
+  useEffect(() => {
+    loadList();
+  }, []);
+
   async function loadList() {
     setLoading(true);
-    const lisResponses: Response<Pokemon>[] = await Promise.all([
+    const lisResponses: Response<Pokemon>[] = await requestFourPokemons();
+    setError(
+      lisResponses.reduce(
+        (prev, current) => (current.error ? current.status : prev),
+        200
+      )
+    );
+    setList(lisResponses);
+    setLoading(false);
+    correct.current = Math.floor(Math.random() * 3);
+  }
+
+  async function requestFourPokemons(): Promise<Response<Pokemon>[]> {
+    return await Promise.all([
       ApiGet<Pokemon>(
         `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
       ),
@@ -34,20 +51,7 @@ export default function Game(): ReactElement {
         `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
       ),
     ]);
-    setError(
-      lisResponses.reduce(
-        (prev, current) => (current.error ? current.status : prev),
-        200
-      )
-    );
-    setList(lisResponses);
-    setLoading(false);
-    correct.current = Math.floor(Math.random() * 3);
   }
-
-  useEffect(() => {
-    loadList();
-  }, []);
 
   function reveal(id: number) {
     if (id === correct.current) {
@@ -80,13 +84,16 @@ export default function Game(): ReactElement {
   }
 
   if (loading) return <LoadingScreen />;
+
   if (error >= 300)
     return (
       <ErrorScreen
         error={`there was a error trying to connect.\n Code: ${error}`}
       />
     );
+
   if (lose) return <RestartGame score={score.current} restart={restart} />;
+
   return (
     <div className="game">
       <img
