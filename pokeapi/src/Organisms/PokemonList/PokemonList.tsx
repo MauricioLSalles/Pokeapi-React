@@ -3,6 +3,7 @@ import {
   useEffect,
   useRef,
   useState,
+  type ChangeEvent,
   type ReactElement,
 } from "react";
 import type { Pokemon } from "../../Types/Pokemon";
@@ -12,11 +13,13 @@ import type { PokemonListsResponse } from "../../Types/PokemonListsResponse";
 import ApiGet from "../../CustomHooks/ApiGet";
 import { PokeListContext } from "../../CustomHooks/CreateContext";
 import type { Response } from "../../Types/Response";
+import InputField from "../../Molecules/InputField/InputField";
 
 type Props = React.HTMLAttributes<HTMLUListElement>;
 
 function PokemonList(props: Props): ReactElement {
   const offset = useRef<number>(0);
+  const partialOffset = useRef<number>(25);
   const loader = useRef<null | HTMLDivElement>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const listContext = useContext(PokeListContext);
@@ -41,7 +44,7 @@ function PokemonList(props: Props): ReactElement {
           `https://pokeapi.co/api/v2/pokemon?limit=10&offset=${offset.current}`
         );
       if (res.data) loadList(res.data);
-      offset.current = oldOffset + 10;
+      offset.current = oldOffset + partialOffset.current;
     }
 
     const observer = new IntersectionObserver(
@@ -66,8 +69,26 @@ function PokemonList(props: Props): ReactElement {
     };
   }, [listContext, listContext?.inputRef]);
 
+  function changePartialOffset(event: ChangeEvent<HTMLInputElement>) {
+    console.log(event.target.value);
+    partialOffset.current = Number(event.target.value);
+  }
+
   return (
     <>
+      <InputField
+        title="change the offset:"
+        inputProps={{
+          placeholder: "25",
+          className: "text-normal PokemonListOffset",
+          id: "offset",
+          type: "number",
+          onChange: changePartialOffset,
+        }}
+        props={{
+          className: "PokemonListOffsetContainer",
+        }}
+      />
       <ul {...props} className="PokemonList">
         {listContext?.list.map((pokemon, id) => (
           <PokemonCard
