@@ -45,12 +45,7 @@ function PokemonList(props: Props): ReactElement {
     async (urlList: PokemonListsResponse): Promise<void> => {
       Promise.all(
         urlList.results.map((listItem) => ApiGet<Pokemon>(listItem.url))
-      )
-        .then((responses) => updateListContext(responses))
-        .catch(() => {
-          setError(true);
-          setLoading(false);
-        });
+      ).then((responses) => updateListContext(responses));
     },
     [updateListContext]
   );
@@ -64,7 +59,7 @@ function PokemonList(props: Props): ReactElement {
       loadList(urlList.data);
       offset.current = offset.current + partialOffset.current;
     } else {
-      setError(false);
+      setError(true);
     }
   }, [loadList]);
 
