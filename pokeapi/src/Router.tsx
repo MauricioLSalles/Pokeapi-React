@@ -4,6 +4,7 @@ import PokemonListPage from "./Pages/PokemonListPage";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import ErrorScreen from "./Organisms/ErrorScreen/ErrorScreen";
 import HomePage from "./Pages/HomePage";
+import PokemonInfoPage from "./Pages/PokemonInfoPage/PokemonInfoPage";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "games",
         element: <PokemonGame />,
+      },
+      {
+        path: "pokemon/:id",
+        element: <PokemonInfoPage />,
       },
       {
         path: "*",
