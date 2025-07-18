@@ -1,0 +1,27 @@
+.PokemonDataHeader {
+  padding: 4rem 8rem;
+  text-align: start;
+}
+
+.PokemonDataHeader-button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+.PokemonDataHeader-button:hover {
+  border: none;
+  cursor: pointer;
+}
+
+.PokemonDataHeader-number {
+  padding: 0;
+  margin: 8px;
+}
+
+.PokemonDataHeader-name {
+  text-align: start;
+  padding: 0;
+  margin: 8px;
+}
