@@ -38,7 +38,7 @@ export default function PokemonInfoPage(): ReactElement {
   return (
     <div className="pokemonInfoPage">
       <PokemonDataOverview pokemonData={data} />
-      <PokemonImageOverview />
+      <PokemonImageOverview pokemonData={data} />
     </div>
   );
 }
