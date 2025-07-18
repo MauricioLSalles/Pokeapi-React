@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import ErrorScreen from "./Organisms/ErrorScreen/ErrorScreen";
 import HomePage from "./Pages/HomePage";
 import PokemonInfoPage from "./Pages/PokemonInfoPage/PokemonInfoPage";
+import { pokemonLoader } from "./Loaders/PokemonLoader";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path: "pokemon/:id",
+        loader: pokemonLoader,
         element: <PokemonInfoPage />,
       },
       {
