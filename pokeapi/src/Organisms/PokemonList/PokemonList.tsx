@@ -28,29 +28,36 @@ function PokemonList(props: Props): ReactElement {
   const [error, setError] = useState<boolean>(false);
   const listContext = useContext(PokeListContext);
 
-  const loadList = useCallback(
-    async (list: PokemonListsResponse): Promise<void> => {
-      const responses = await Promise.all(
-        list.results.map((listItem) => ApiGet<Pokemon>(listItem.url))
-      );
+  const updateListContext = useCallback(
+    async (responses: Response<Pokemon>[]) => {
       responses.forEach((pokeResult) => {
-        if (pokeResult.data !== null && listContext)
+        if (pokeResult.data !== null && listContext) {
           listContext.loadedList.current[pokeResult.data.id] = pokeResult.data;
+        }
       });
       listContext?.setList(listContext.loadedList.current);
-      console.log(listContext?.list);
       setLoading(false);
     },
     [listContext]
   );
 
+  const loadList = useCallback(
+    async (urlList: PokemonListsResponse): Promise<void> => {
+      const responses: Response<Pokemon>[] = await Promise.all(
+        urlList.results.map((listItem) => ApiGet<Pokemon>(listItem.url))
+      );
+      updateListContext(responses);
+    },
+    [updateListContext]
+  );
+
   const addPokemons = useCallback(async (): Promise<void> => {
-    const res: Response<PokemonListsResponse> =
+    const urlList: Response<PokemonListsResponse> =
       await ApiGet<PokemonListsResponse>(
         `https://pokeapi.co/api/v2/pokemon?limit=${partialOffset.current}&offset=${offset.current}`
       );
-    if (!res.error && res.data) {
-      loadList(res.data);
+    if (!urlList.error && urlList.data) {
+      loadList(urlList.data);
       offset.current = offset.current + partialOffset.current;
     } else {
       setError(false);
