@@ -1,6 +1,8 @@
-import { useParams } from "react-router";
 import "./PokemonInfoPage.css";
-import { useEffect, useState, type ReactElement } from "react";
+import { useParams } from "react-router";
+import PokemonDataOverview from "../../Organisms/PokemonDataOverview/PokemonDataOverview";
+import PokemonImageOverview from "../../Organisms/PokemonImageOverview/PokemonImageOverview";
+import { useCallback, useEffect, useState, type ReactElement } from "react";
 import ApiGet from "../../CustomHooks/ApiGet";
 import type { Pokemon } from "../../Types/Pokemon";
 import type { Response } from "../../Types/Response";
@@ -13,22 +15,30 @@ export default function PokemonInfoPage(): ReactElement {
   const [loading, setLoading] = useState<boolean>(true);
 
   const params = useParams();
-  async function loadPokemon() {
+  const loadPokemon = useCallback(async () => {
     const response: Response<Pokemon> = await ApiGet<Pokemon>(
-      `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
+      `https://pokeapi.co/api/v2/pokemon/${params}/`
     );
     setLoading(false);
     setError(response.error);
     setData(response.data);
-  }
+  }, [params]);
+
   useEffect(() => {
     loadPokemon();
-  }, []);
-  if (error) {
-    return <ErrorScreen error="Pokemon could not be loaded" />;
-  }
+  }, [loadPokemon]);
+
   if (loading) {
     <LoadingScreen />;
   }
-  return <div className="pokemonInfoPage"></div>;
+
+  if (error || data === null) {
+    return <ErrorScreen error="Pokemon could not be loaded" />;
+  }
+  return (
+    <div className="pokemonInfoPage">
+      <PokemonDataOverview pokemonData={data} />
+      <PokemonImageOverview />
+    </div>
+  );
 }
