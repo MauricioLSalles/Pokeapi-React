@@ -6,6 +6,11 @@
   justify-content: space-between;
   position: relative;
   aspect-ratio: 1.5;
+  overflow: hidden;
+}
+
+.PokemonCard:hover {
+  cursor: pointer;
 }
 
 .PokemonCardDots {
@@ -21,6 +26,7 @@
 }
 
 .PokemonCard-image-container {
+  height: 100%;
   justify-self: end;
   position: relative;
   display: flex;
@@ -29,13 +35,13 @@
 }
 .PokemonCard-image-background {
   position: absolute;
-  left: 60%;
   z-index: 0;
   height: 100%;
-  width: 60%;
 }
 
 .PokemonCard-image {
+  height: 50%;
   position: relative;
-  left: 30%;
+  align-self: center;
+  margin: 0 0 0 40%;
 }
