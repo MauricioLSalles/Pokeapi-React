@@ -5,9 +5,7 @@ import Router from "./Router";
 function App() {
   return (
     <StrictMode>
-      <div className="content">
-        <Router />
-      </div>
+      <Router />
     </StrictMode>
   );
 }
