@@ -17,7 +17,7 @@ export default function PokemonInfoPage(): ReactElement {
   const params = useParams();
   const loadPokemon = useCallback(async () => {
     const response: Response<Pokemon> = await ApiGet<Pokemon>(
-      `https://pokeapi.co/api/v2/pokemon/${params}/`
+      `https://pokeapi.co/api/v2/pokemon/${params.id}/`
     );
     setLoading(false);
     setError(response.error);
@@ -29,7 +29,7 @@ export default function PokemonInfoPage(): ReactElement {
   }, [loadPokemon]);
 
   if (loading) {
-    <LoadingScreen />;
+    return <LoadingScreen />;
   }
 
   if (error || data === null) {
