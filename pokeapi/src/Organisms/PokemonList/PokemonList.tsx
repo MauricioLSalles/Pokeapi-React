@@ -43,10 +43,14 @@ function PokemonList(props: Props): ReactElement {
 
   const loadList = useCallback(
     async (urlList: PokemonListsResponse): Promise<void> => {
-      const responses: Response<Pokemon>[] = await Promise.all(
+      Promise.all(
         urlList.results.map((listItem) => ApiGet<Pokemon>(listItem.url))
-      );
-      updateListContext(responses);
+      )
+        .then((responses) => updateListContext(responses))
+        .catch(() => {
+          setError(true);
+          setLoading(false);
+        });
     },
     [updateListContext]
   );
