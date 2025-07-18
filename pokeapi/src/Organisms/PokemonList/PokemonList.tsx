@@ -1,4 +1,5 @@
 import {
+  useCallback,
   useContext,
   useEffect,
   useRef,
@@ -14,6 +15,8 @@ import ApiGet from "../../CustomHooks/ApiGet";
 import { PokeListContext } from "../../CustomHooks/CreateContext";
 import type { Response } from "../../Types/Response";
 import InputField from "../../Molecules/InputField/InputField";
+import LoadingScreen from "../../Molecules/LoadingScreen/LoadingScreen";
+import ErrorScreen from "../ErrorScreen/ErrorScreen";
 
 type Props = React.HTMLAttributes<HTMLUListElement>;
 
@@ -22,31 +25,39 @@ function PokemonList(props: Props): ReactElement {
   const partialOffset = useRef<number>(25);
   const loader = useRef<null | HTMLDivElement>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
   const listContext = useContext(PokeListContext);
 
-  useEffect(() => {
-    async function loadList(list: PokemonListsResponse): Promise<void> {
-      for (let i = 0; i < list.results.length; i++) {
-        const pokeResult: Response<Pokemon> = await ApiGet<Pokemon>(
-          list.results[i].url
-        );
+  const loadList = useCallback(
+    async (list: PokemonListsResponse): Promise<void> => {
+      const responses = await Promise.all(
+        list.results.map((listItem) => ApiGet<Pokemon>(listItem.url))
+      );
+      responses.forEach((pokeResult) => {
         if (pokeResult.data !== null && listContext)
           listContext.loadedList.current[pokeResult.data.id] = pokeResult.data;
-      }
+      });
       listContext?.setList(listContext.loadedList.current);
       console.log(listContext?.list);
       setLoading(false);
-    }
+    },
+    [listContext]
+  );
 
-    async function addPokemons(): Promise<void> {
-      const res: Response<PokemonListsResponse> =
-        await ApiGet<PokemonListsResponse>(
-          `https://pokeapi.co/api/v2/pokemon?limit=${partialOffset.current}&offset=${offset.current}`
-        );
-      if (res.data) loadList(res.data);
+  const addPokemons = useCallback(async (): Promise<void> => {
+    const res: Response<PokemonListsResponse> =
+      await ApiGet<PokemonListsResponse>(
+        `https://pokeapi.co/api/v2/pokemon?limit=${partialOffset.current}&offset=${offset.current}`
+      );
+    if (!res.error && res.data) {
+      loadList(res.data);
       offset.current = offset.current + partialOffset.current;
+    } else {
+      setError(false);
     }
+  }, [loadList]);
 
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (
@@ -67,11 +78,14 @@ function PokemonList(props: Props): ReactElement {
         observer.unobserve(loader.current);
       }
     };
-  }, [listContext, listContext?.inputRef]);
+  }, [addPokemons, listContext, listContext?.inputRef]);
 
   function changePartialOffset(event: ChangeEvent<HTMLInputElement>) {
-    console.log(event.target.value);
     partialOffset.current = Number(event.target.value);
+  }
+
+  if (error) {
+    return <ErrorScreen error="the pokemons could not be loaded" />;
   }
 
   return (
@@ -100,13 +114,8 @@ function PokemonList(props: Props): ReactElement {
           />
         ))}
       </ul>
-      {!loading && listContext?.list.length === 0 ? (
-        <div>pokemon not found</div>
-      ) : (
-        <></>
-      )}
-      <div style={{ height: 1 }} ref={loader}>
-        {loading ? "loading..." : " "}
+      <div className="loadMorePokemons" style={{ height: 1 }} ref={loader}>
+        {loading ? <LoadingScreen /> : " "}
       </div>
     </>
   );
