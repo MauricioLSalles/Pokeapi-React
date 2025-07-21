@@ -1,5 +1,10 @@
-.iconContainer {
+.roundIconContainer {
   width: fit-content;
   padding: 8px 8px 8px;
   border-radius: 50%;
+  box-shadow: 0px 10px 20px 0px #a552cc4d;
+}
+
+.roundIconContainer-icon {
+  stroke: white;
 }
