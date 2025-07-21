@@ -1,0 +1,13 @@
+.dataDetails {
+}
+.dataDetails-generation {
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #747476;
+}
+.dataDetails-typeList {
+  display: flex;
+  gap: 8px;
+}
