@@ -1,30 +1,41 @@
 import { type ReactElement } from "react";
-import PokemonGame from "./Pages/PokemonGame";
-import PokemonListPage from "./Pages/PokemonListPage";
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorScreen from "./Organisms/ErrorScreen/ErrorScreen";
-import HomePage from "./Pages/HomePage";
-import PokemonInfoPage from "./Pages/PokemonInfoPage/PokemonInfoPage";
 import { pokemonLoader } from "./Loaders/PokemonLoader";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
+    async lazy() {
+      const { HomePage } = await import("./Pages/HomePage");
+      return { Component: HomePage };
+    },
     children: [
       {
         index: true,
         path: "/pokedex",
-        element: <PokemonListPage />,
+        async lazy() {
+          const { PokemonListPage } = await import("./Pages/PokemonListPage");
+          return { Component: PokemonListPage };
+        },
       },
       {
         path: "games",
-        element: <PokemonGame />,
+        async lazy() {
+          const { PokemonGame } = await import("./Pages/PokemonGame");
+          return { Component: PokemonGame };
+        },
       },
       {
         path: "pokemon/:id",
         loader: pokemonLoader,
-        element: <PokemonInfoPage />,
+        async lazy() {
+          const { PokemonListPage } = await import("./Pages/PokemonListPage");
+          return { Component: PokemonListPage };
+        },
+        errorElement: (
+          <ErrorScreen fullScreen={true} error="this page doesnt exist" />
+        ),
       },
       {
         path: "*",

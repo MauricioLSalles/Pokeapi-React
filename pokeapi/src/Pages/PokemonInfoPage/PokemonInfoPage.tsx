@@ -1,5 +1,5 @@
 import "./PokemonInfoPage.css";
-import { useLoaderData } from "react-router";
+import { useLoaderData } from "react-router-dom";
 import PokemonDataOverview from "../../Organisms/PokemonDataOverview/PokemonDataOverview";
 import PokemonImageOverview from "../../Organisms/PokemonImageOverview/PokemonImageOverview";
 import { type ReactElement } from "react";
@@ -7,7 +7,7 @@ import type { Pokemon } from "../../Types/Pokemon";
 import type { Response } from "../../Types/Response";
 import ErrorScreen from "../../Organisms/ErrorScreen/ErrorScreen";
 
-export default function PokemonInfoPage(): ReactElement {
+export function PokemonInfoPage(): ReactElement {
   const { pokemonResponse }: { pokemonResponse: Response<Pokemon> } =
     useLoaderData();
 

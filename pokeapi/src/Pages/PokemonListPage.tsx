@@ -5,7 +5,7 @@ import type { Pokemon } from "../Types/Pokemon";
 import { PokeListContext } from "../CustomHooks/CreateContext";
 import PokemonListPageTemplate from "../templates/PokemonListPageTemplate";
 
-export default function PokemonListPage() {
+export function PokemonListPage() {
   const [list, setList] = useState<Pokemon[]>([]);
   const loadedList = useRef<Pokemon[]>([]);
   const inputRef = useRef<HTMLInputElement | null>(null);
