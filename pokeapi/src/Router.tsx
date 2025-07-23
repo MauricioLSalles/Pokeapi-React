@@ -3,6 +3,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorScreen from "./Organisms/ErrorScreen/ErrorScreen";
 import { pokemonLoader } from "./Loaders/PokemonLoader";
 import { PokemonGameLoader } from "./Loaders/PokemonGameLoader";
+import { PokemonDataInfo } from "./Organisms/PokemonDataInfo/PokemonDataInfo";
+import { PokemonStatsDetails } from "./Organisms/PokemonStatsDetails/PokemonStatsDetails";
+import { PokemonEvolutionDetails } from "./Organisms/PokemonEvolutionDetails/PokemonEvolutionDetails";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +43,20 @@ const router = createBrowserRouter([
         errorElement: (
           <ErrorScreen fullScreen={true} error="this page doesnt exist" />
         ),
+        children: [
+          {
+            path: "PokedexData",
+            element: <PokemonDataInfo />,
+          },
+          {
+            path: "Stats",
+            element: <PokemonStatsDetails />,
+          },
+          {
+            path: "Evolution",
+            element: <PokemonEvolutionDetails />,
+          },
+        ],
       },
       {
         path: "*",
