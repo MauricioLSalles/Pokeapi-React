@@ -1,0 +1,22 @@
+.pokemonNavbar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0;
+  justify-content: space-around;
+}
+
+.pokemonNavbar > * {
+  border-bottom: 2px solid #17171b80;
+  text-align: center;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 24px;
+  letter-spacing: 0%;
+  text-decoration: none;
+  color: #17171b80;
+}
+
+.pokemonNavbar-active {
+  border-bottom: 2px solid #ea5d60;
+  color: #ea5d60;
+}
