@@ -9,6 +9,7 @@ export type Pokemon = {
   height: number;
   weight: number;
   stats: Stat[];
+  species: Species;
 };
 
 export type Sprites = {
@@ -36,7 +37,7 @@ export type StatDetails = {
   name: string;
 };
 
-export type species = {
+export type Species = {
   name: string;
   url: string;
 };
