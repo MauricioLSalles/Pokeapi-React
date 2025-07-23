@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactElement } from "react";
+import { useRef, useState, type ReactElement } from "react";
 import Button from "../../Atoms/Button/Button";
 import "./Game.css";
 import ApiGet from "../../CustomHooks/ApiGet";
@@ -7,20 +7,19 @@ import type { Response } from "../../Types/Response";
 import LoadingScreen from "../../Molecules/LoadingScreen/LoadingScreen";
 import ErrorScreen from "../ErrorScreen/ErrorScreen";
 import RestartGame from "../../Molecules/RestartGame/RestartGame";
+import { useLoaderData } from "react-router";
 
 export default function Game(): ReactElement {
-  const [list, setList] = useState<Response<Pokemon>[]>([]);
+  const { fourRandomPokemons }: { fourRandomPokemons: Response<Pokemon>[] } =
+    useLoaderData();
+  const [list, setList] = useState<Response<Pokemon>[]>(fourRandomPokemons);
   const [lose, setLose] = useState<boolean>();
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<number>(200);
   const tries = useRef<number>(0);
   const score = useRef<number>(0);
-  const correct = useRef<number>(0);
+  const correct = useRef<number>(Math.floor(Math.random() * 3));
   const imageRef = useRef<HTMLImageElement | null>(null);
-
-  useEffect(() => {
-    loadList();
-  }, []);
 
   async function loadList() {
     setLoading(true);
