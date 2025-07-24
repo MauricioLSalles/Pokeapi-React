@@ -1,7 +1,7 @@
 import "./PokemonCard.css";
 import CardDescription from "../../Molecules/CardDescription/CardDescription";
 import MultipleLabels from "../../Molecules/MultipleLabels/MultipleLabels";
-import type { Label } from "../../Types/Label";
+import type { Type } from "../../Types/Type";
 import { useNavigate } from "react-router";
 
 function PokemonCard({
@@ -12,7 +12,7 @@ function PokemonCard({
 }: {
   number: string;
   name: string;
-  labels: Label[];
+  labels: Type[];
   imgSrc: string;
 }) {
   const navigate = useNavigate();

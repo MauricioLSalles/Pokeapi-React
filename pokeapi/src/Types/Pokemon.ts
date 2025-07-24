@@ -1,9 +1,9 @@
-import type { Label } from "./Label";
+import type { Type } from "./Type";
 
 export type Pokemon = {
   id: number;
   name: string;
-  types: Label[];
+  types: Type[];
   sprites: Sprites;
   abilities: Abilitie[];
   height: number;

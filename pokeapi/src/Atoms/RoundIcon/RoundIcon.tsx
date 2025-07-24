@@ -1,8 +1,8 @@
 import { type ReactElement } from "react";
-import type { Label } from "../../Types/Label";
+import type { Type } from "../../Types/Type";
 import "./RoundIcon.css";
 
-export default function RoundIcon({ type }: { type: Label }): ReactElement {
+export default function RoundIcon({ type }: { type: Type }): ReactElement {
   return (
     <div>
       <div

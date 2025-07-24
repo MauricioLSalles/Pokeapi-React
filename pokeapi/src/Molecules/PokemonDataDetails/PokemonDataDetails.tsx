@@ -1,8 +1,8 @@
 import RoundIcon from "../../Atoms/RoundIcon/RoundIcon";
-import type { Label } from "../../Types/Label";
+import type { Type } from "../../Types/Type";
 import "./PokemonDataDetails.css";
 
-export default function PokemonDataDetails({ types }: { types: Label[] }) {
+export default function PokemonDataDetails({ types }: { types: Type[] }) {
   return (
     <div className="dataDetails">
       <span className="dataDetails-generation">Generation 1</span>
