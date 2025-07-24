@@ -6,6 +6,7 @@ import { type ReactElement } from "react";
 import type { Pokemon } from "../../Types/Pokemon";
 import type { Response } from "../../Types/Response";
 import ErrorScreen from "../../Organisms/ErrorScreen/ErrorScreen";
+import { PokemonContext } from "../../CustomHooks/PokemonContext";
 
 export function PokemonInfoPage(): ReactElement {
   const { pokemonResponse }: { pokemonResponse: Response<Pokemon> } =
@@ -16,8 +17,10 @@ export function PokemonInfoPage(): ReactElement {
   }
   return (
     <div className="pokemonInfoPage">
-      <PokemonDataOverview pokemonData={pokemonResponse.data} />
-      <PokemonImageOverview pokemonData={pokemonResponse.data} />
+      <PokemonContext value={pokemonResponse.data}>
+        <PokemonDataOverview pokemonData={pokemonResponse.data} />
+        <PokemonImageOverview pokemonData={pokemonResponse.data} />
+      </PokemonContext>
     </div>
   );
 }
