@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import type { Pokemon } from "../../Types/Pokemon";
+import "./PokemonImageOverview.css";
 
 export default function PokemonImageOverview({
   pokemonData,
@@ -8,11 +9,15 @@ export default function PokemonImageOverview({
 }): ReactElement {
   return (
     <div
+      className="pokemonImageOverview-container"
       style={{
         backgroundColor: `var(--bg-type-${pokemonData.types[0].type.name}`,
       }}
     >
-      dasdsa
+      <img
+        className="pokemonImageOverview-image"
+        src={pokemonData.sprites.front_default}
+      />
     </div>
   );
 }
