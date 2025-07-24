@@ -8,7 +8,7 @@ export default function PokemonDataDetails({ types }: { types: Type[] }) {
       <span className="dataDetails-generation">Generation 1</span>
       <div className="dataDetails-typeList">
         {types.map((type) => (
-          <RoundIcon type={type} />
+          <RoundIcon key={type.type.name} type={type} />
         ))}
       </div>
     </div>
