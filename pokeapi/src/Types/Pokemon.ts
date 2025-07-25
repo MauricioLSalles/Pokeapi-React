@@ -1,4 +1,6 @@
+import type { SpeciesDetails } from "./SpeciesDetails";
 import type { Type } from "./Type";
+import type { TypeExtendedDetails } from "./TypeExtendedDetails";
 
 export type Pokemon = {
   id: number;
@@ -41,3 +43,7 @@ export type Species = {
   name: string;
   url: string;
 };
+
+export type ExpandedDataPokemon = Pokemon &
+  TypeExtendedDetails &
+  SpeciesDetails;
