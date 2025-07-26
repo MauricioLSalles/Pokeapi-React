@@ -1,0 +1,9 @@
+.DataInfoRow {
+  display: flex;
+  justify-content: space-between;
+  height: fit-content;
+}
+
+.DataInfoRow-types {
+  display: flex;
+}
