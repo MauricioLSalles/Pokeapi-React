@@ -8,16 +8,14 @@ export default function RoundIcon({
   type: TypeDetails;
 }): ReactElement {
   return (
-    <div>
-      <div
-        className="roundIconContainer"
-        style={{ backgroundColor: `var(--bg-type-${type.name}` }}
-      >
-        <img
-          src={`/typesIcons/${type.name}.svg`}
-          className="roundIconContainer-icon"
-        />
-      </div>
+    <div
+      className="roundIconContainer"
+      style={{ backgroundColor: `var(--bg-type-${type.name}` }}
+    >
+      <img
+        src={`/typesIcons/${type.name}.svg`}
+        className="roundIconContainer-icon"
+      />
     </div>
   );
 }
