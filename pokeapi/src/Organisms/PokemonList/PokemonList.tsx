@@ -10,13 +10,11 @@ import {
 import type { Pokemon } from "../../Types/Pokemon";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import "./PokemonList.css";
-import type { PokemonListsResponse } from "../../Types/PokemonListsResponse";
 import ApiGet from "../../CustomHooks/ApiGet";
 import { PokeListContext } from "../../CustomHooks/CreateContext";
 import type { Response } from "../../Types/Response";
 import InputField from "../../Molecules/InputField/InputField";
 import LoadingScreen from "../../Molecules/LoadingScreen/LoadingScreen";
-import ErrorScreen from "../ErrorScreen/ErrorScreen";
 
 type Props = React.HTMLAttributes<HTMLUListElement>;
 
@@ -25,7 +23,6 @@ function PokemonList(props: Props): ReactElement {
   const partialOffset = useRef<number>(25);
   const loader = useRef<null | HTMLDivElement>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
   const listContext = useContext(PokeListContext);
 
   const updateListContext = useCallback(
@@ -41,27 +38,26 @@ function PokemonList(props: Props): ReactElement {
     [listContext]
   );
 
-  const loadList = useCallback(
-    async (urlList: PokemonListsResponse): Promise<void> => {
-      Promise.all(
-        urlList.results.map((listItem) => ApiGet<Pokemon>(listItem.url))
-      ).then((responses) => updateListContext(responses));
-    },
-    [updateListContext]
-  );
-
-  const addPokemons = useCallback(async (): Promise<void> => {
-    const urlList: Response<PokemonListsResponse> =
-      await ApiGet<PokemonListsResponse>(
-        `https://pokeapi.co/api/v2/pokemon?limit=${partialOffset.current}&offset=${offset.current}`
+  const createRequestList = useCallback(() => {
+    const requestList = [];
+    for (
+      let i = offset.current;
+      i < offset.current + partialOffset.current;
+      i++
+    ) {
+      requestList.push(
+        ApiGet<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${i}/`)
       );
-    if (!urlList.error && urlList.data) {
-      loadList(urlList.data);
-      offset.current = offset.current + partialOffset.current;
-    } else {
-      setError(true);
     }
-  }, [loadList]);
+    return requestList;
+  }, []);
+
+  const loadList = useCallback(async (): Promise<void> => {
+    Promise.all(createRequestList()).then((responses) => {
+      updateListContext(responses);
+      offset.current += partialOffset.current;
+    });
+  }, [createRequestList, updateListContext]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -71,7 +67,7 @@ function PokemonList(props: Props): ReactElement {
           listContext?.inputRef.current?.value === ""
         ) {
           setLoading(true);
-          addPokemons();
+          loadList();
         }
       },
       { threshold: 0 }
@@ -84,14 +80,10 @@ function PokemonList(props: Props): ReactElement {
         observer.unobserve(loader.current);
       }
     };
-  }, [addPokemons, listContext, listContext?.inputRef]);
+  }, [listContext, listContext?.inputRef, loadList]);
 
   function changePartialOffset(event: ChangeEvent<HTMLInputElement>) {
     partialOffset.current = Number(event.target.value);
-  }
-
-  if (error) {
-    return <ErrorScreen error="the pokemons could not be loaded" />;
   }
 
   return (
