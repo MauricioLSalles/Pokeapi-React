@@ -45,6 +45,10 @@ const router = createBrowserRouter([
         ),
         children: [
           {
+            index: true,
+            element: <PokemonDataInfo />,
+          },
+          {
             path: "PokedexData",
             element: <PokemonDataInfo />,
           },
