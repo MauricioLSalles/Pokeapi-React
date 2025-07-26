@@ -1,7 +1,7 @@
 import { createContext } from "react";
-import { type Pokemon } from "../Types/Pokemon";
+import { type ExpandedDataPokemon } from "../Types/Pokemon";
 
-export const PokemonContext = createContext<Pokemon>({
+export const PokemonContext = createContext<ExpandedDataPokemon>({
   id: 0,
   name: "",
   types: [],
@@ -17,4 +17,9 @@ export const PokemonContext = createContext<Pokemon>({
     name: "",
     url: "",
   },
+  damage_relations: {
+    double_damage_from: [],
+  },
+  egg_groups: [],
+  flavor_text_entries: [],
 });
