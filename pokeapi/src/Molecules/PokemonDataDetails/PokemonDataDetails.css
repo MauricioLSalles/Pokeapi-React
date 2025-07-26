@@ -1,4 +1,7 @@
 .dataDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 .dataDetails-generation {
   font-weight: 900;
