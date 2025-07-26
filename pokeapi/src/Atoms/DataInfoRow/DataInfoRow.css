@@ -4,6 +4,11 @@
   height: fit-content;
 }
 
-.DataInfoRow-types {
+.DataInfoRow-weaknesses {
   display: flex;
+  gap: 5px;
+}
+
+.DataInfoRow-label {
+  align-self: center;
 }
