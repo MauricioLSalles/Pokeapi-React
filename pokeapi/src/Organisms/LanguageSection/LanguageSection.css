@@ -1,17 +1,21 @@
 .languageSection {
-    background-color: #ea5d60;
-    display: flex;
-    padding: 0.6rem 2rem;
-    gap: 24px;
-    flex-grow: 1;
+  background-color: #ea5d60;
+  display: flex;
+  padding: 0.6rem 2rem;
+  gap: 24px;
+  flex-grow: 1;
 }
 
-.languageSection>span {
-    align-self: center;
-    color: white;
+.languageSection > span {
+  align-self: center;
+  color: white;
 }
 
 .launageFlags {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.launageFlags > img:hover {
+  cursor: pointer;
 }

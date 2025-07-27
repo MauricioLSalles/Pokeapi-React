@@ -1,20 +1,21 @@
 import { useRef, useState, type ReactElement } from "react";
-import Button from "../../Atoms/Button/Button";
 import "./Game.css";
 import type { Pokemon, PokemonWithName } from "../../Types/Pokemon";
 import type { Response } from "../../Types/Response";
-import LoadingScreen from "../../Molecules/LoadingScreen/LoadingScreen";
-import ErrorScreen from "../ErrorScreen/ErrorScreen";
-import RestartGame from "../../Molecules/RestartGame/RestartGame";
 import { useLoaderData } from "react-router";
 import {
   createFourPokemonsRequests,
   loadNames,
 } from "../../Utils/ApiCallUtils";
+import LoadingScreen from "../../Molecules/LoadingScreen/LoadingScreen";
+import ErrorScreen from "../ErrorScreen/ErrorScreen";
+import RestartGame from "../../Molecules/RestartGame/RestartGame";
+import Button from "../../Atoms/Button/Button";
 
-export default function Game(): ReactElement {
+export default function Game({ language }: { language: string }): ReactElement {
   const { fourRandomPokemons }: { fourRandomPokemons: PokemonWithName[] } =
     useLoaderData();
+  console.log(fourRandomPokemons);
   const [list, setList] = useState<PokemonWithName[]>(fourRandomPokemons);
   const [lose, setLose] = useState<boolean>();
   const [loading, setLoading] = useState<boolean>(false);
@@ -74,6 +75,13 @@ export default function Game(): ReactElement {
     loadList();
   }
 
+  function selectLanguage(pokemon: PokemonWithName): string {
+    return (
+      pokemon.names.find((name) => name.language.name === language)?.name ??
+      pokemon.name
+    );
+  }
+
   if (loading) return <LoadingScreen />;
 
   if (error)
@@ -91,10 +99,10 @@ export default function Game(): ReactElement {
         className={`guessPokemonImage `}
       />
       <div className="gameButtons">
-        <Button onClick={() => reveal(0)} text={list[0].name ?? ""} />
-        <Button onClick={() => reveal(1)} text={list[1].name ?? ""} />
-        <Button onClick={() => reveal(2)} text={list[2].name ?? ""} />
-        <Button onClick={() => reveal(3)} text={list[3].name ?? ""} />
+        <Button onClick={() => reveal(0)} text={selectLanguage(list[0])} />
+        <Button onClick={() => reveal(1)} text={selectLanguage(list[1])} />
+        <Button onClick={() => reveal(2)} text={selectLanguage(list[2])} />
+        <Button onClick={() => reveal(3)} text={selectLanguage(list[3])} />
       </div>
     </div>
   );
