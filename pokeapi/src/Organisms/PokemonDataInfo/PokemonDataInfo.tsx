@@ -7,7 +7,6 @@ import "./PokemonDataInfo.css";
 
 export function PokemonDataInfo(): ReactElement {
   const pokemon: ExpandedDataPokemon = useContext(PokemonContext);
-  console.log(pokemon);
   return (
     <div>
       <h2>About this Pokémon:</h2>
