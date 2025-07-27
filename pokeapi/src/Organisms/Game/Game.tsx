@@ -1,21 +1,24 @@
 import { useRef, useState, type ReactElement } from "react";
 import Button from "../../Atoms/Button/Button";
 import "./Game.css";
-import ApiGet from "../../CustomHooks/ApiGet";
-import type { Pokemon } from "../../Types/Pokemon";
+import type { Pokemon, PokemonWithName } from "../../Types/Pokemon";
 import type { Response } from "../../Types/Response";
 import LoadingScreen from "../../Molecules/LoadingScreen/LoadingScreen";
 import ErrorScreen from "../ErrorScreen/ErrorScreen";
 import RestartGame from "../../Molecules/RestartGame/RestartGame";
 import { useLoaderData } from "react-router";
+import {
+  createFourPokemonsRequests,
+  loadNames,
+} from "../../Utils/ApiCallUtils";
 
 export default function Game(): ReactElement {
-  const { fourRandomPokemons }: { fourRandomPokemons: Response<Pokemon>[] } =
+  const { fourRandomPokemons }: { fourRandomPokemons: PokemonWithName[] } =
     useLoaderData();
-  const [list, setList] = useState<Response<Pokemon>[]>(fourRandomPokemons);
+  const [list, setList] = useState<PokemonWithName[]>(fourRandomPokemons);
   const [lose, setLose] = useState<boolean>();
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<number>(200);
+  const [error, setError] = useState<boolean>(false);
   const tries = useRef<number>(0);
   const score = useRef<number>(0);
   const correct = useRef<number>(Math.floor(Math.random() * 3));
@@ -23,33 +26,22 @@ export default function Game(): ReactElement {
 
   async function loadList() {
     setLoading(true);
-    const lisResponses: Response<Pokemon>[] = await requestFourPokemons();
-    setError(
-      lisResponses.reduce(
-        (prev, current) => (current.error ? current.status : prev),
-        200
-      )
-    );
-    setList(lisResponses);
+    setList(await requestFourPokemons());
     setLoading(false);
     correct.current = Math.floor(Math.random() * 3);
   }
 
-  async function requestFourPokemons(): Promise<Response<Pokemon>[]> {
-    return await Promise.all([
-      ApiGet<Pokemon>(
-        `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
-      ),
-      ApiGet<Pokemon>(
-        `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
-      ),
-      ApiGet<Pokemon>(
-        `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
-      ),
-      ApiGet<Pokemon>(
-        `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 200)}/`
-      ),
-    ]);
+  async function requestFourPokemons(): Promise<PokemonWithName[]> {
+    try {
+      const pokemonResponses: Response<Pokemon>[] = await Promise.all(
+        createFourPokemonsRequests()
+      );
+      return await loadNames(pokemonResponses);
+    } catch {
+      setError(true);
+      setLoading(false);
+      return [];
+    }
   }
 
   function reveal(id: number) {
@@ -84,11 +76,9 @@ export default function Game(): ReactElement {
 
   if (loading) return <LoadingScreen />;
 
-  if (error >= 300)
+  if (error)
     return (
-      <ErrorScreen
-        error={`there was a error trying to connect.\n Code: ${error}`}
-      />
+      <ErrorScreen error={`there was a error trying to load the pokemons.`} />
     );
 
   if (lose) return <RestartGame score={score.current} restart={restart} />;
@@ -97,14 +87,14 @@ export default function Game(): ReactElement {
     <div className="game">
       <img
         ref={imageRef}
-        src={list[correct.current].data?.sprites.front_default}
+        src={list[correct.current].sprites.front_default}
         className={`guessPokemonImage `}
       />
       <div className="gameButtons">
-        <Button onClick={() => reveal(0)} text={list[0].data?.name ?? ""} />
-        <Button onClick={() => reveal(1)} text={list[1].data?.name ?? ""} />
-        <Button onClick={() => reveal(2)} text={list[2].data?.name ?? ""} />
-        <Button onClick={() => reveal(3)} text={list[3].data?.name ?? ""} />
+        <Button onClick={() => reveal(0)} text={list[0].name ?? ""} />
+        <Button onClick={() => reveal(1)} text={list[1].name ?? ""} />
+        <Button onClick={() => reveal(2)} text={list[2].name ?? ""} />
+        <Button onClick={() => reveal(3)} text={list[3].name ?? ""} />
       </div>
     </div>
   );
