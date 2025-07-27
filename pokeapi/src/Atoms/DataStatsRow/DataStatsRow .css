@@ -1,0 +1,20 @@
+.DataStatsRow {
+  display: grid;
+  grid-template-columns: 15% 60% 10%;
+  justify-content: space-between;
+  height: fit-content;
+}
+
+.DataStatsRow-weaknesses {
+  display: flex;
+  gap: 5px;
+}
+
+.DataStatsRow-label {
+  align-self: center;
+}
+
+.DataStatsRow-completedBar {
+  height: 5px;
+  background-color: green;
+}
