@@ -13,7 +13,7 @@ export default function Button({
   onClick,
 }: props): ReactElement {
   return (
-    <button onClick={onClick} className={`button ${type}`}>
+    <button onClick={onClick} className={`button ${type} text-normal`}>
       {text}
     </button>
   );
