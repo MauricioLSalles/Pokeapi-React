@@ -35,9 +35,9 @@ function composePokemonData(
 ): ExpandedDataPokemon {
   if (pokeData !== null && typeData !== null && null !== speciesData) {
     return {
-      ...pokeData,
       ...typeData,
       ...speciesData,
+      ...pokeData,
     };
   }
   throw new Error();
