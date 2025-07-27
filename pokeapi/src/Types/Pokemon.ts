@@ -1,4 +1,3 @@
-import type { EvolutionData } from "./EvolutionData";
 import type { SpeciesDetails } from "./SpeciesDetails";
 import type { Type } from "./Type";
 import type { TypeExtendedDetails } from "./TypeExtendedDetails";
@@ -48,5 +47,5 @@ export type Species = {
 export type ExpandedDataPokemon = Pokemon &
   TypeExtendedDetails &
   SpeciesDetails & {
-    evolutions: EvolutionData[];
+    evolutions: Pokemon[];
   };
