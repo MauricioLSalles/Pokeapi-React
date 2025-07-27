@@ -1,12 +1,8 @@
 import { type ReactElement } from "react";
 import { NavLink } from "react-router-dom";
 import "./DataNavbar.css";
-import { useParams } from "react-router";
 
 export function DataNavbar(): ReactElement {
-  const params = useParams();
-  console.log(params);
-
   return (
     <ul className="pokemonNavbar">
       <NavLink

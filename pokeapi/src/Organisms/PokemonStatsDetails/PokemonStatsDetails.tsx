@@ -8,7 +8,6 @@ const DESCRIPTION_TEXT =
 
 export function PokemonStatsDetails(): ReactElement {
   const pokemon: ExpandedDataPokemon = useContext(PokemonContext);
-  console.log(pokemon);
   return (
     <div>
       <p>{DESCRIPTION_TEXT}</p>
