@@ -1,0 +1,17 @@
+.PokemonEvolutionDetails {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.PokemonEvolutionDetails-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.PokemonEvolutionDetails-icons {
+  margin-top: 4px;
+  display: flex;
+  gap: 8px;
+}
