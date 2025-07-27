@@ -8,11 +8,11 @@ import "./pokemonDataCard.css";
  */
 export function PokemonDataCard(): ReactElement {
   return (
-    <div>
+    <>
       <DataNavbar />
-      <div className="pokemonDataCard">
+      <div className="pokemonDataCard text-normal">
         <Outlet />
       </div>
-    </div>
+    </>
   );
 }
