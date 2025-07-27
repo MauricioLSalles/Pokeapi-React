@@ -1,36 +1,29 @@
-import { useState, type ReactElement } from "react";
+import { type ReactElement } from "react";
 import { NavLink } from "react-router-dom";
 import "./DataNavbar.css";
+import { useParams } from "react-router";
 
 export function DataNavbar(): ReactElement {
-  const [currentlySelected, setCurrentlySelected] = useState<number>(0);
-  function getClassName(position: number) {
-    if (currentlySelected === position) {
-      return "pokemonNavbar-active";
-    } else {
-      return "";
-    }
-  }
+  const params = useParams();
+  console.log(params);
+
   return (
     <ul className="pokemonNavbar">
       <NavLink
-        onClick={() => setCurrentlySelected(0)}
-        className={getClassName(0)}
+        className={({ isActive }) => (isActive ? "pokemonNavbar-active" : "")}
         to={"PokedexData"}
       >
         Pokedex Data
       </NavLink>
       <NavLink
-        onClick={() => setCurrentlySelected(1)}
-        className={getClassName(1)}
-        to={"Stats"}
+        className={({ isActive }) => (isActive ? "pokemonNavbar-active" : "")}
+        to={"stats"}
       >
         Stats
       </NavLink>
       <NavLink
-        onClick={() => setCurrentlySelected(2)}
-        className={getClassName(2)}
-        to={"Evolution"}
+        className={({ isActive }) => (isActive ? "pokemonNavbar-active" : "")}
+        to={"evolution"}
       >
         Evolution
       </NavLink>

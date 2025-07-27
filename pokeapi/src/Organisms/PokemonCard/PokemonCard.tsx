@@ -18,7 +18,7 @@ function PokemonCard({
   const navigate = useNavigate();
   return (
     <li
-      onClick={() => navigate(`/pokemon/${number}`)}
+      onClick={() => navigate(`/pokemon/${number}/pokedexData`)}
       style={{ backgroundColor: `var(--bg-type-${labels[0].type.name}` }}
       className="PokemonCard"
     >
