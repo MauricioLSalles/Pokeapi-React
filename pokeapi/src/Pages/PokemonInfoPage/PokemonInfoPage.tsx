@@ -3,23 +3,17 @@ import { useLoaderData } from "react-router-dom";
 import PokemonDataOverview from "../../Organisms/PokemonDataOverview/PokemonDataOverview";
 import PokemonImageOverview from "../../Organisms/PokemonImageOverview/PokemonImageOverview";
 import { type ReactElement } from "react";
-import type { Pokemon } from "../../Types/Pokemon";
-import type { Response } from "../../Types/Response";
-import ErrorScreen from "../../Organisms/ErrorScreen/ErrorScreen";
+import type { ExpandedDataPokemon } from "../../Types/Pokemon";
 import { PokemonContext } from "../../CustomHooks/PokemonContext";
 
 export function PokemonInfoPage(): ReactElement {
-  const { pokemonResponse }: { pokemonResponse: Response<Pokemon> } =
-    useLoaderData();
+  const { pokemonData }: { pokemonData: ExpandedDataPokemon } = useLoaderData();
 
-  if (pokemonResponse.error || pokemonResponse.data === null) {
-    return <ErrorScreen error="Pokemon could not be loaded" />;
-  }
   return (
     <div className="pokemonInfoPage">
-      <PokemonContext value={pokemonResponse.data}>
-        <PokemonDataOverview pokemonData={pokemonResponse.data} />
-        <PokemonImageOverview pokemonData={pokemonResponse.data} />
+      <PokemonContext value={pokemonData}>
+        <PokemonDataOverview pokemonData={pokemonData} />
+        <PokemonImageOverview pokemonData={pokemonData} />
       </PokemonContext>
     </div>
   );
