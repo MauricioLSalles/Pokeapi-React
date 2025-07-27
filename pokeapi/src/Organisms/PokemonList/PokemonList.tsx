@@ -3,7 +3,6 @@ import {
   useContext,
   useEffect,
   useRef,
-  useState,
   type ChangeEvent,
   type ReactElement,
 } from "react";
@@ -19,21 +18,22 @@ import LoadingScreen from "../../Molecules/LoadingScreen/LoadingScreen";
 type Props = React.HTMLAttributes<HTMLUListElement>;
 
 function PokemonList(props: Props): ReactElement {
-  const offset = useRef<number>(0);
+  const offset = useRef<number>(1);
   const partialOffset = useRef<number>(25);
-  const loader = useRef<null | HTMLDivElement>(null);
-  const [loading, setLoading] = useState<boolean>(true);
   const listContext = useContext(PokeListContext);
 
   const updateListContext = useCallback(
-    async (responses: Response<Pokemon>[]) => {
+    (responses: Response<Pokemon>[]) => {
+      if (!listContext) {
+        return;
+      }
       responses.forEach((pokeResult) => {
         if (pokeResult.data !== null && listContext) {
-          listContext.loadedList.current[pokeResult.data.id] = pokeResult.data;
+          listContext.loadedList.current[pokeResult.data.id - 1] =
+            pokeResult.data;
         }
       });
-      listContext?.setList(listContext.loadedList.current);
-      setLoading(false);
+      listContext.setList([...listContext.loadedList.current]);
     },
     [listContext]
   );
@@ -53,31 +53,30 @@ function PokemonList(props: Props): ReactElement {
   }, []);
 
   const loadList = useCallback(async (): Promise<void> => {
-    Promise.all(createRequestList()).then((responses) => {
-      updateListContext(responses);
-      offset.current += partialOffset.current;
-    });
+    const responses: Response<Pokemon>[] =
+      await Promise.all(createRequestList());
+    updateListContext(responses);
   }, [createRequestList, updateListContext]);
 
   useEffect(() => {
+    const loader = document.getElementsByClassName("loadingContainer")[0];
     const observer = new IntersectionObserver(
       (entries) => {
         if (
           entries[0].isIntersecting &&
           listContext?.inputRef.current?.value === ""
         ) {
-          setLoading(true);
-          loadList();
+          loadList().then(() => (offset.current += partialOffset.current));
         }
       },
       { threshold: 0 }
     );
-    if (loader.current) {
-      observer.observe(loader.current);
+    if (loader) {
+      observer.observe(loader);
     }
     return () => {
-      if (loader.current) {
-        observer.unobserve(loader.current);
+      if (loader) {
+        observer.unobserve(loader);
       }
     };
   }, [listContext, listContext?.inputRef, loadList]);
@@ -112,9 +111,7 @@ function PokemonList(props: Props): ReactElement {
           />
         ))}
       </ul>
-      <div className="loadMorePokemons" style={{ height: 1 }} ref={loader}>
-        {loading ? <LoadingScreen /> : " "}
-      </div>
+      <LoadingScreen />
     </>
   );
 }
