@@ -5,7 +5,6 @@ import type { Response } from "../Types/Response";
 import type { TypeExtendedDetails } from "../Types/TypeExtendedDetails";
 import type { SpeciesDetails } from "../Types/SpeciesDetails";
 import type { EvolutionChain, EvolutionDetails } from "../Types/EvolutionChain";
-import type { EvolutionData } from "../Types/EvolutionData";
 
 export async function pokemonLoader({ params }: LoaderFunctionArgs): Promise<{
   pokemonData: ExpandedDataPokemon;
@@ -36,7 +35,7 @@ function composePokemonData(
   pokeData: Pokemon,
   typeData: TypeExtendedDetails,
   speciesData: SpeciesDetails,
-  evolutions: EvolutionData[]
+  evolutions: Pokemon[]
 ): ExpandedDataPokemon {
   return {
     evolutions: evolutions,
@@ -48,7 +47,7 @@ function composePokemonData(
 
 async function loadEvolutions(
   speciesResponse: Response<SpeciesDetails>
-): Promise<EvolutionData[]> {
+): Promise<Pokemon[]> {
   const evolutionResponse: Response<EvolutionChain> =
     await ApiGet<EvolutionChain>(
       speciesResponse.data?.evolution_chain.url ?? ""
@@ -58,12 +57,12 @@ async function loadEvolutions(
 
 async function registerEvolutions(
   evolution: EvolutionDetails
-): Promise<EvolutionData[]> {
-  let pokemons: EvolutionData[] = [];
-  pokemons.push({
-    name: evolution.species.name,
-    url: await getImageUrl(evolution.species.name),
-  });
+): Promise<Pokemon[]> {
+  let pokemons: Pokemon[] = [];
+  const pokeResponse = await ApiGet<Pokemon>(
+    `https://pokeapi.co/api/v2/pokemon/${evolution.species.name}`
+  );
+  pokemons.push(pokeResponse.data);
   if (evolution.evolves_to[0]) {
     pokemons = [
       ...pokemons,
@@ -71,11 +70,4 @@ async function registerEvolutions(
     ];
   }
   return pokemons;
-}
-
-async function getImageUrl(name: string) {
-  const pokemonResponse: Response<Pokemon> = await ApiGet<Pokemon>(
-    `https://pokeapi.co/api/v2/pokemon/${name}`
-  );
-  return pokemonResponse.data.sprites.front_default;
 }
