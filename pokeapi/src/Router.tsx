@@ -14,6 +14,9 @@ const router = createBrowserRouter([
       const { HomePage } = await import("./Pages/HomePage");
       return { Component: HomePage };
     },
+    errorElement: (
+      <ErrorScreen fullScreen={true} error="Error loading the page" />
+    ),
     children: [
       {
         index: true,
@@ -22,6 +25,9 @@ const router = createBrowserRouter([
           const { PokemonListPage } = await import("./Pages/PokemonListPage");
           return { Component: PokemonListPage };
         },
+        errorElement: (
+          <ErrorScreen fullScreen={true} error="Error loading the page" />
+        ),
       },
       {
         path: "games",
@@ -30,6 +36,9 @@ const router = createBrowserRouter([
           const { PokemonGame } = await import("./Pages/PokemonGame");
           return { Component: PokemonGame };
         },
+        errorElement: (
+          <ErrorScreen fullScreen={true} error="Error loading the page" />
+        ),
       },
       {
         path: "pokemon/:id",
@@ -41,27 +50,36 @@ const router = createBrowserRouter([
           return { Component: PokemonInfoPage };
         },
         errorElement: (
-          <ErrorScreen fullScreen={true} error="this page doesnt exist" />
+          <ErrorScreen fullScreen={true} error="Error loading the page" />
         ),
         children: [
           {
             path: "PokedexData",
             element: <PokemonDataInfo />,
+            errorElement: (
+              <ErrorScreen fullScreen={true} error="Error loading the page" />
+            ),
           },
           {
             path: "Stats",
             element: <PokemonStatsDetails />,
+            errorElement: (
+              <ErrorScreen fullScreen={true} error="Error loading the page" />
+            ),
           },
           {
             path: "Evolution",
             element: <PokemonEvolutionDetails />,
+            errorElement: (
+              <ErrorScreen fullScreen={true} error="Error loading the page" />
+            ),
           },
         ],
       },
       {
         path: "*",
         element: (
-          <ErrorScreen fullScreen={true} error="this page doesnt exist" />
+          <ErrorScreen fullScreen={true} error="This page doesnt exist" />
         ),
       },
     ],
