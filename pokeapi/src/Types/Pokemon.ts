@@ -32,7 +32,7 @@ export type AbilitieDetails = {
 export type Stat = {
   base_stat: number;
   effort: number;
-  StatDetails: StatDetails;
+  stat: StatDetails;
 };
 
 export type StatDetails = {
