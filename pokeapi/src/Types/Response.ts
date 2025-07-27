@@ -1,5 +1,5 @@
 export type Response<T> = {
-  data: T | null;
+  data: T;
   loading: boolean;
   error: boolean;
   status: number;
