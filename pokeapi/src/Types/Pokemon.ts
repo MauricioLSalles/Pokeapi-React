@@ -49,3 +49,5 @@ export type ExpandedDataPokemon = Pokemon &
   SpeciesDetails & {
     evolutions: Pokemon[];
   };
+
+export type PokemonWithName = Pokemon & SpeciesDetails;
