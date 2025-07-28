@@ -1,0 +1,15 @@
+.DataInfoRow {
+  display: flex;
+  justify-content: space-between;
+  height: fit-content;
+}
+
+.DataInfoRow-weaknesses {
+  display: flex;
+  gap: 5px;
+}
+
+.DataInfoRow-label {
+  font-weight: bold;
+  align-self: center;
+}

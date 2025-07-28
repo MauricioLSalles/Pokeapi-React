@@ -1,17 +1,17 @@
 import { type ReactElement } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorScreen from "./Organisms/ErrorScreen/ErrorScreen";
+import ErrorScreen from "./Components/Organisms/ErrorScreen/ErrorScreen";
 import { pokemonLoader } from "./Loaders/PokemonLoader";
 import { PokemonGameLoader } from "./Loaders/PokemonGameLoader";
-import { PokemonDataInfo } from "./Organisms/PokemonDataInfo/PokemonDataInfo";
-import { PokemonStatsDetails } from "./Organisms/PokemonStatsDetails/PokemonStatsDetails";
-import { PokemonEvolutionDetails } from "./Organisms/PokemonEvolutionDetails/PokemonEvolutionDetails";
+import { PokemonDataInfo } from "./Components/Organisms/PokemonDataInfo/PokemonDataInfo";
+import { PokemonStatsDetails } from "./Components/Organisms/PokemonStatsDetails/PokemonStatsDetails";
+import { PokemonEvolutionDetails } from "./Components/Organisms/PokemonEvolutionDetails/PokemonEvolutionDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     async lazy() {
-      const { MainPage } = await import("./Pages/MainPage/MainPage");
+      const { MainPage } = await import("./Components/Pages/MainPage/MainPage");
       return { Component: MainPage };
     },
     errorElement: (
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         path: "/pokedex",
         async lazy() {
           const { PokemonListPage } = await import(
-            "./Pages/PokemonListPage/PokemonListPage"
+            "./Components/Pages/PokemonListPage/PokemonListPage"
           );
           return { Component: PokemonListPage };
         },
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         loader: PokemonGameLoader,
         async lazy() {
           const { PokemonGame } = await import(
-            "./Pages/PokemonGame/PokemonGame"
+            "./Components/Pages/PokemonGame/PokemonGame"
           );
           return { Component: PokemonGame };
         },
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         loader: pokemonLoader,
         async lazy() {
           const { PokemonInfoPage } = await import(
-            "./Pages/PokemonInfoPage/PokemonInfoPage"
+            "./Components/Pages/PokemonInfoPage/PokemonInfoPage"
           );
           return { Component: PokemonInfoPage };
         },
