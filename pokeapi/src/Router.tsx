@@ -11,8 +11,8 @@ const router = createBrowserRouter([
   {
     path: "/",
     async lazy() {
-      const { HomePage } = await import("./Pages/HomePage/HomePage");
-      return { Component: HomePage };
+      const { MainPage } = await import("./Pages/MainPage/MainPage");
+      return { Component: MainPage };
     },
     errorElement: (
       <ErrorScreen fullScreen={true} error="Error loading the page" />
