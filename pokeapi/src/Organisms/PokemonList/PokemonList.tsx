@@ -9,11 +9,11 @@ import {
 import type { Pokemon } from "../../Types/Pokemon";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import "./PokemonList.css";
-import ApiGet from "../../CustomHooks/ApiGet";
 import { PokeListContext } from "../../CustomHooks/CreateContext";
 import type { Response } from "../../Types/Response";
 import InputField from "../../Molecules/InputField/InputField";
 import LoadingScreen from "../../Molecules/LoadingScreen/LoadingScreen";
+import CacheApiGet from "../../CustomHooks/CacheApiGet";
 
 type Props = React.HTMLAttributes<HTMLUListElement>;
 
@@ -46,7 +46,7 @@ function PokemonList(props: Props): ReactElement {
       i++
     ) {
       requestList.push(
-        ApiGet<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${i}/`)
+        CacheApiGet<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${i}/`)
       );
     }
     return requestList;
