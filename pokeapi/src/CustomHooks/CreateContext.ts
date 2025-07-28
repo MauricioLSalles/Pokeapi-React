@@ -1,11 +1,17 @@
 import { createContext } from "react";
 import type { Pokemon } from "../Types/Pokemon";
 
-type listContext = {
-    loadedList: React.RefObject<Pokemon[]>;
-    list: Pokemon[];
-    setList: React.Dispatch<React.SetStateAction<Pokemon[]>>;
-    inputRef: React.RefObject<HTMLInputElement | null>
-}
+export type ListContext = {
+  loadedList: React.RefObject<Pokemon[]>;
+  list: Pokemon[];
+  setList: React.Dispatch<React.SetStateAction<Pokemon[]>>;
+  inputRef: React.RefObject<HTMLInputElement | null>;
+};
 
-export const PokeListContext = createContext<listContext | null>(null);
+/**
+ * @prop list: Is a state that holds the list of the visible pokemons to the user
+ * @prop setList: Set the list of visble pokemons
+ * @prop loadedList: Is the list with all the pokemons that where fetched from the PokeApi
+ * @prop inputRef: Refers to the search input
+ */
+export const PokeListContext = createContext<ListContext | null>(null);

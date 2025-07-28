@@ -1,6 +1,11 @@
 import type { Response } from "../Types/Response";
 import ApiGet from "./ApiGet";
 
+/**
+ *
+ * @param url Url to fetch data
+ * @returns If data is cached, returns cached data, else makes the fetch
+ */
 export async function CacheApiGet<T>(url: string): Promise<Response<T>> {
   try {
     const cahceIndex = url;
