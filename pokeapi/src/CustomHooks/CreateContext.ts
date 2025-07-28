@@ -1,10 +1,10 @@
 import { createContext } from "react";
-import type { Pokemon } from "../Types/Pokemon";
+import type { SimplifiedPokemon } from "../Types/Pokemon";
 
 export type ListContext = {
-  loadedList: React.RefObject<Pokemon[]>;
-  visibleList: Pokemon[];
-  setVisibleList: React.Dispatch<React.SetStateAction<Pokemon[]>>;
+  loadedList: React.RefObject<SimplifiedPokemon[]>;
+  visibleList: SimplifiedPokemon[];
+  setVisibleList: React.Dispatch<React.SetStateAction<SimplifiedPokemon[]>>;
   inputRef: React.RefObject<HTMLInputElement | null>;
 };
 

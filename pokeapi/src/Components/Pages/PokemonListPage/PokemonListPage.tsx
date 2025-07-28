@@ -1,13 +1,13 @@
 import { useRef, useState } from "react";
 import PokemonList from "../../Organisms/PokemonList/PokemonList";
 import SearchSection from "../../Organisms/SearchSection/SearchSection";
-import type { Pokemon } from "../../../Types/Pokemon";
 import { PokeListContext } from "../../../CustomHooks/CreateContext";
 import PokemonListPageTemplate from "../../Templates/PokemonListPageTemplate";
+import type { SimplifiedPokemon } from "../../../Types/Pokemon";
 
 export function PokemonListPage() {
-  const [visibleList, setVisibleList] = useState<Pokemon[]>([]);
-  const loadedList = useRef<Pokemon[]>([]);
+  const [visibleList, setVisibleList] = useState<SimplifiedPokemon[]>([]);
+  const loadedList = useRef<SimplifiedPokemon[]>([]);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   return (

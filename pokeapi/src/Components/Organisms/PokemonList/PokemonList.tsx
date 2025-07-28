@@ -6,17 +6,16 @@ import {
   type ChangeEvent,
   type ReactElement,
 } from "react";
-import type { Pokemon } from "../../../Types/Pokemon";
+import type { SimplifiedPokemon } from "../../../Types/Pokemon";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import "./PokemonList.css";
 import {
   PokeListContext,
   type ListContext,
 } from "../../../CustomHooks/CreateContext";
-import type { Response } from "../../../Types/Response";
 import InputField from "../../Molecules/InputField/InputField";
 import LoadingScreen from "../../Molecules/LoadingScreen/LoadingScreen";
-import CacheApiGet from "../../../CustomHooks/CacheApiGet";
+import CacheApiGetSimplifiedPokemons from "../../../CustomHooks/CacheApiGetSimplifiedPokemons";
 
 type Props = React.HTMLAttributes<HTMLUListElement>;
 
@@ -29,14 +28,13 @@ function PokemonList(props: Props): ReactElement {
    * Updates the total list of the pokemons with the partial list loaded from the API. It uses the list suplied by the context
    */
   const updateListContext = useCallback(
-    (responses: Response<Pokemon>[]): void => {
+    (responses: SimplifiedPokemon[]): void => {
       if (!listContext) {
         return;
       }
       responses.forEach((pokeResult) => {
-        if (pokeResult.data !== null && listContext) {
-          listContext.loadedList.current[pokeResult.data.id - 1] =
-            pokeResult.data;
+        if (pokeResult !== null && listContext) {
+          listContext.loadedList.current[pokeResult.id - 1] = pokeResult;
         }
       });
       listContext.setVisibleList([...listContext.loadedList.current]);
@@ -47,7 +45,7 @@ function PokemonList(props: Props): ReactElement {
   /**
    * Create a list of fetchs to the PokeAPI to load the pokemons equal to the number selected by the user
    */
-  const createRequestList = useCallback((): Promise<Response<Pokemon>>[] => {
+  const createRequestList = useCallback((): Promise<SimplifiedPokemon>[] => {
     const requestList = [];
     for (
       let i = offset.current;
@@ -55,7 +53,7 @@ function PokemonList(props: Props): ReactElement {
       i++
     ) {
       requestList.push(
-        CacheApiGet<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${i}/`)
+        CacheApiGetSimplifiedPokemons(`https://pokeapi.co/api/v2/pokemon/${i}/`)
       );
     }
     return requestList;
@@ -65,7 +63,7 @@ function PokemonList(props: Props): ReactElement {
    * Fetches the data and update the list
    */
   const loadList = useCallback(async (): Promise<void> => {
-    const responses: Response<Pokemon>[] =
+    const responses: SimplifiedPokemon[] =
       await Promise.all(createRequestList());
     updateListContext(responses);
   }, [createRequestList, updateListContext]);

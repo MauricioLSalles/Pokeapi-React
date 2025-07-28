@@ -14,6 +14,11 @@ export type Pokemon = {
   species: Species;
 };
 
+export type SimplifiedPokemon = Pick<
+  Pokemon,
+  "id" | "name" | "types" | "sprites"
+>;
+
 export type Sprites = {
   back_default: string;
   front_default: string;
