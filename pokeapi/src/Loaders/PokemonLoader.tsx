@@ -6,6 +6,11 @@ import type { TypeExtendedDetails } from "../Types/TypeExtendedDetails";
 import type { SpeciesDetails } from "../Types/SpeciesDetails";
 import type { EvolutionChain, EvolutionDetails } from "../Types/EvolutionChain";
 
+/**
+ * Load the pokemon with the id on the path. It also loads its related data
+ * @param param: Used to obtain the id on the path
+ * @returns The data of the pokemon including its typeDetails, speciesDetails and evolutions
+ */
 export async function pokemonLoader({ params }: LoaderFunctionArgs): Promise<{
   pokemonData: ExpandedDataPokemon;
 }> {
@@ -18,20 +23,24 @@ export async function pokemonLoader({ params }: LoaderFunctionArgs): Promise<{
   const speciesResponse: Response<SpeciesDetails> =
     await ApiGet<SpeciesDetails>(pokemonResponse.data.species.url);
 
-  const evolutions = await loadEvolutions(speciesResponse);
+  const evolutions = await loadEvolutions(
+    speciesResponse.data.evolution_chain.url
+  );
 
-  const expandedData = composePokemonData(
+  const expandedData = mergePokemonData(
     pokemonResponse.data,
     typeDetailsResponse.data,
     speciesResponse.data,
     evolutions
   );
-
-  console.log(expandedData);
   return { pokemonData: expandedData };
 }
 
-function composePokemonData(
+/**
+ * Merge diferent objects holding pokemon data into one extended version
+ * @returns A merged object containing the data of the pokemon and all of its details
+ */
+function mergePokemonData(
   pokeData: Pokemon,
   typeData: TypeExtendedDetails,
   speciesData: SpeciesDetails,
@@ -45,17 +54,23 @@ function composePokemonData(
   };
 }
 
-async function loadEvolutions(
-  speciesResponse: Response<SpeciesDetails>
-): Promise<Pokemon[]> {
+/**
+ * Fetch the chain of evolutions of a pokemon and then loads the data of the pokemons in that chain
+ * @param evolutionChainUrl Url for fetching the evolutions data
+ * @returns
+ */
+async function loadEvolutions(evolutionChainUrl: string): Promise<Pokemon[]> {
   const evolutionResponse: Response<EvolutionChain> =
-    await ApiGet<EvolutionChain>(
-      speciesResponse.data?.evolution_chain.url ?? ""
-    );
-  return await registerEvolutions(evolutionResponse.data.chain);
+    await ApiGet<EvolutionChain>(evolutionChainUrl);
+  return await getEvolutionsData(evolutionResponse.data.chain);
 }
 
-async function registerEvolutions(
+/**
+ * Obtain the current pokemon evolution and fetches its data. If there is a next evolution, call itself with the next evolution
+ * @param evolution: Object that holds the name of the current evolution and the next evolution in evolves_to
+ * @returns An array with the data of the entire evolution chain
+ */
+async function getEvolutionsData(
   evolution: EvolutionDetails
 ): Promise<Pokemon[]> {
   let pokemons: Pokemon[] = [];
@@ -64,10 +79,10 @@ async function registerEvolutions(
   );
   pokemons.push(pokeResponse.data);
   if (evolution.evolves_to[0]) {
-    pokemons = [
-      ...pokemons,
-      ...(await registerEvolutions(evolution.evolves_to[0])),
-    ];
+    const nextPokemonEvolution = await getEvolutionsData(
+      evolution.evolves_to[0]
+    );
+    pokemons = [...pokemons, ...nextPokemonEvolution];
   }
   return pokemons;
 }

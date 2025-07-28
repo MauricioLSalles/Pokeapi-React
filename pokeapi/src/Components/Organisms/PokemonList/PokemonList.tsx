@@ -39,7 +39,7 @@ function PokemonList(props: Props): ReactElement {
             pokeResult.data;
         }
       });
-      listContext.setList([...listContext.loadedList.current]);
+      listContext.setVisibleList([...listContext.loadedList.current]);
     },
     [listContext]
   );
@@ -94,7 +94,7 @@ function PokemonList(props: Props): ReactElement {
     };
   }, [listContext, listContext?.inputRef, loadList]);
 
-  function changePartialOffset(event: ChangeEvent<HTMLInputElement>) {
+  function changePartialOffset(event: ChangeEvent<HTMLInputElement>): void {
     partialOffset.current = Number(event.target.value);
   }
 
@@ -114,7 +114,7 @@ function PokemonList(props: Props): ReactElement {
         }}
       />
       <ul {...props} className="PokemonList">
-        {listContext?.list.map((pokemon, id) => (
+        {listContext?.visibleList.map((pokemon, id) => (
           <PokemonCard
             key={id}
             number={pokemon.id.toString()}

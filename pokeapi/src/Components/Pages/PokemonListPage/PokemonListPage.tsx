@@ -6,13 +6,15 @@ import { PokeListContext } from "../../../CustomHooks/CreateContext";
 import PokemonListPageTemplate from "../../Templates/PokemonListPageTemplate";
 
 export function PokemonListPage() {
-  const [list, setList] = useState<Pokemon[]>([]);
+  const [visibleList, setVisibleList] = useState<Pokemon[]>([]);
   const loadedList = useRef<Pokemon[]>([]);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   return (
     <div>
-      <PokeListContext.Provider value={{ loadedList, list, setList, inputRef }}>
+      <PokeListContext.Provider
+        value={{ loadedList, visibleList, setVisibleList, inputRef }}
+      >
         <PokemonListPageTemplate
           secondHeader={<SearchSection />}
           content={<PokemonList />}

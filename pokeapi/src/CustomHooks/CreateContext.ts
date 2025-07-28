@@ -3,8 +3,8 @@ import type { Pokemon } from "../Types/Pokemon";
 
 export type ListContext = {
   loadedList: React.RefObject<Pokemon[]>;
-  list: Pokemon[];
-  setList: React.Dispatch<React.SetStateAction<Pokemon[]>>;
+  visibleList: Pokemon[];
+  setVisibleList: React.Dispatch<React.SetStateAction<Pokemon[]>>;
   inputRef: React.RefObject<HTMLInputElement | null>;
 };
 
