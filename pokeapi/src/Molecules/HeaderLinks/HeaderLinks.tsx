@@ -6,12 +6,12 @@ type CustomProps = {
   links: Link[];
 };
 
-type Props = CustomProps & React.ButtonHTMLAttributes<HTMLUListElement>;
+type Props = CustomProps & React.ButtonHTMLAttributes<HTMLDivElement>;
 
 export default function HeaderLinks(props: Props) {
   const { links, ...ElementProps } = props;
   return (
-    <ul className="HeaderLinks text-large" {...ElementProps}>
+    <div className="HeaderLinks text-large" {...ElementProps}>
       {links.map((link: Link, id: number) => (
         <NavLink
           className={({ isActive }) =>
@@ -23,6 +23,6 @@ export default function HeaderLinks(props: Props) {
           {link.name}
         </NavLink>
       ))}
-    </ul>
+    </div>
   );
 }

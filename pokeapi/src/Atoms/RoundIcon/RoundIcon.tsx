@@ -13,6 +13,7 @@ export default function RoundIcon({
       style={{ backgroundColor: `var(--bg-type-${type.name}` }}
     >
       <img
+        alt={type.name}
         src={`/typesIcons/${type.name}.svg`}
         className="roundIconContainer-icon"
       />

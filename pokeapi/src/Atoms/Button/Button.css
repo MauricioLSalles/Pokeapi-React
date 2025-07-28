@@ -1,5 +1,5 @@
 .primary {
-  background: #ea5d60;
+  background: var(--bg-red);
   color: white;
 }
 

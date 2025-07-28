@@ -15,6 +15,7 @@ export default function PokemonImageOverview({
       }}
     >
       <img
+        alt={pokemonData.name}
         className="pokemonImageOverview-image"
         src={pokemonData.sprites.front_default}
       />

@@ -1,5 +1,5 @@
 .languageSection {
-  background-color: #ea5d60;
+  background-color: var(--bg-red);
   display: flex;
   padding: 0.6rem 2rem;
   gap: 24px;

@@ -4,7 +4,7 @@ import "./DataNavbar.css";
 
 export function DataNavbar(): ReactElement {
   return (
-    <ul className="pokemonNavbar">
+    <div className="pokemonNavbar">
       <NavLink
         className={({ isActive }) => (isActive ? "pokemonNavbar-active" : "")}
         to={"PokedexData"}
@@ -23,6 +23,6 @@ export function DataNavbar(): ReactElement {
       >
         Evolution
       </NavLink>
-    </ul>
+    </div>
   );
 }

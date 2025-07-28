@@ -1,5 +1,5 @@
 .searchSection {
-  background-color: #ea5d60;
+  background-color: var(--bg-red);
   flex-grow: 1;
   display: flex;
   gap: 5rem;

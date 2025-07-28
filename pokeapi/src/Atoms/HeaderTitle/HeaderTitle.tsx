@@ -1,7 +1,7 @@
 import { type ReactElement } from "react";
-import './HeaderTitle.css';
+import "./HeaderTitle.css";
 type CustomProps = {
-  text: string
+  text: string;
 };
 
 type Props = CustomProps & React.ButtonHTMLAttributes<HTMLDivElement>;
@@ -9,13 +9,15 @@ type Props = CustomProps & React.ButtonHTMLAttributes<HTMLDivElement>;
 function HeaderTitle(props: Props): ReactElement {
   const { text, ...TitleProps } = props;
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }} {...TitleProps}>
-      <img src={"/icons/pokeball.png"} className='HeaderTitle-icon' />
-      <span className="header-title">
-        {text}
-      </span>
+    <div style={{ display: "flex", alignItems: "center" }} {...TitleProps}>
+      <img
+        alt="Pokemon"
+        src={"/icons/pokeball.png"}
+        className="HeaderTitle-icon"
+      />
+      <span className="header-title">{text}</span>
     </div>
-  )
+  );
 }
 
-export default HeaderTitle
+export default HeaderTitle;

@@ -10,10 +10,26 @@ export default function LanguageSection({
     <div className="languageSection">
       <span className="text-normal">Select a language</span>
       <div className="launageFlags">
-        <img onClick={() => setLanguage("ja")} src="/flags/flag1.svg" />
-        <img onClick={() => setLanguage("ko")} src="/flags/flag2.svg" />
-        <img onClick={() => setLanguage("en")} src="/flags/flag3.svg" />
-        <img onClick={() => setLanguage("es")} src="/flags/flag4.svg" />
+        <img
+          alt="ja"
+          onClick={() => setLanguage("ja")}
+          src="/flags/flag1.svg"
+        />
+        <img
+          alt="ko"
+          onClick={() => setLanguage("ko")}
+          src="/flags/flag2.svg"
+        />
+        <img
+          alt="en"
+          onClick={() => setLanguage("en")}
+          src="/flags/flag3.svg"
+        />
+        <img
+          alt="es"
+          onClick={() => setLanguage("es")}
+          src="/flags/flag4.svg"
+        />
       </div>
     </div>
   );

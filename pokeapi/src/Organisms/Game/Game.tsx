@@ -111,6 +111,7 @@ export default function Game({ language }: { language: string }): ReactElement {
     <div className="game">
       <img
         ref={imageRef}
+        alt={list[correct.current].name}
         src={list[correct.current].sprites.front_default}
         className={`guessPokemonImage `}
       />
