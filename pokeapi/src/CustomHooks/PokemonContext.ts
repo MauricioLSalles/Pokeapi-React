@@ -22,4 +22,9 @@ export const PokemonContext = createContext<ExpandedDataPokemon>({
   },
   egg_groups: [],
   flavor_text_entries: [],
+  evolution_chain: {
+    url: "",
+  },
+  names: [],
+  evolutions: [],
 });
