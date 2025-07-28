@@ -13,9 +13,9 @@ import RestartGame from "../../Molecules/RestartGame/RestartGame";
 import Button from "../../Atoms/Button/Button";
 
 export default function Game({ language }: { language: string }): ReactElement {
+  const MAX_TRIES = 3;
   const { fourRandomPokemons }: { fourRandomPokemons: PokemonWithName[] } =
     useLoaderData();
-  console.log(fourRandomPokemons);
   const [list, setList] = useState<PokemonWithName[]>(fourRandomPokemons);
   const [lose, setLose] = useState<boolean>();
   const [loading, setLoading] = useState<boolean>(false);
@@ -25,7 +25,7 @@ export default function Game({ language }: { language: string }): ReactElement {
   const correct = useRef<number>(Math.floor(Math.random() * 3));
   const imageRef = useRef<HTMLImageElement | null>(null);
 
-  async function loadList() {
+  async function loadList(): Promise<void> {
     setLoading(true);
     setList(await requestFourPokemons());
     setLoading(false);
@@ -45,30 +45,46 @@ export default function Game({ language }: { language: string }): ReactElement {
     }
   }
 
-  function reveal(id: number) {
-    if (id === correct.current) {
+  /**
+   * Check if the selected pokemon is the one in the image. If its correct the score goes upm show
+   * the pokemon and load the next four. If its not it increase the tries counter and check if the game is over
+   * @param selectedPokemonId The id of the selected pokemon
+   */
+  function checkCorrect(selectedPokemonId: number): void {
+    if (selectedPokemonId === correct.current) {
       {
         score.current++;
-        manageCorrectReveal();
+        showAndLoadNext();
       }
-    } else tries.current++;
-    checkIfFailedGame();
+    } else {
+      tries.current++;
+      checkIfFailedGame();
+    }
   }
 
-  function manageCorrectReveal() {
+  /**
+   *  Updates the className of the image to show it and after 2 seconds it loads another 4 pokemons
+   */
+  function showAndLoadNext(): void {
     if (imageRef.current) {
       imageRef.current.className = "guessPokemonImage show";
       setTimeout(() => loadList(), 2000);
     }
   }
 
-  function checkIfFailedGame() {
-    if (tries.current >= 3) {
+  /**
+   * If the number of tries matches or excedes the max tries, the lose state is change to false to show the lose screen
+   */
+  function checkIfFailedGame(): void {
+    if (tries.current >= MAX_TRIES) {
       setLose(true);
     }
   }
 
-  function restart() {
+  /**
+   * Reset to the default states and loads 4 new pokemons
+   */
+  function restart(): void {
     setLose(false);
     score.current = 0;
     tries.current = 0;
@@ -99,10 +115,22 @@ export default function Game({ language }: { language: string }): ReactElement {
         className={`guessPokemonImage `}
       />
       <div className="gameButtons">
-        <Button onClick={() => reveal(0)} text={selectLanguage(list[0])} />
-        <Button onClick={() => reveal(1)} text={selectLanguage(list[1])} />
-        <Button onClick={() => reveal(2)} text={selectLanguage(list[2])} />
-        <Button onClick={() => reveal(3)} text={selectLanguage(list[3])} />
+        <Button
+          onClick={() => checkCorrect(0)}
+          text={selectLanguage(list[0])}
+        />
+        <Button
+          onClick={() => checkCorrect(1)}
+          text={selectLanguage(list[1])}
+        />
+        <Button
+          onClick={() => checkCorrect(2)}
+          text={selectLanguage(list[2])}
+        />
+        <Button
+          onClick={() => checkCorrect(3)}
+          text={selectLanguage(list[3])}
+        />
       </div>
     </div>
   );

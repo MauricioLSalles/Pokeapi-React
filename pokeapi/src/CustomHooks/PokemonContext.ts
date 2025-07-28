@@ -1,6 +1,10 @@
 import { createContext } from "react";
 import { type ExpandedDataPokemon } from "../Types/Pokemon";
 
+/**
+ * Context for the pokemon on the PokemonInfoPage, it holds all the data that will be displayed.
+ * It start with empty files to avoid adding null on the type
+ */
 export const PokemonContext = createContext<ExpandedDataPokemon>({
   id: 0,
   name: "",
