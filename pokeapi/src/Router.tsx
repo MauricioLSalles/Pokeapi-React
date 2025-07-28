@@ -11,7 +11,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     async lazy() {
-      const { HomePage } = await import("./Pages/HomePage");
+      const { HomePage } = await import("./Pages/HomePage/HomePage");
       return { Component: HomePage };
     },
     errorElement: (
@@ -22,7 +22,9 @@ const router = createBrowserRouter([
         index: true,
         path: "/pokedex",
         async lazy() {
-          const { PokemonListPage } = await import("./Pages/PokemonListPage");
+          const { PokemonListPage } = await import(
+            "./Pages/PokemonListPage/PokemonListPage"
+          );
           return { Component: PokemonListPage };
         },
         errorElement: (
@@ -33,7 +35,9 @@ const router = createBrowserRouter([
         path: "games",
         loader: PokemonGameLoader,
         async lazy() {
-          const { PokemonGame } = await import("./Pages/PokemonGame");
+          const { PokemonGame } = await import(
+            "./Pages/PokemonGame/PokemonGame"
+          );
           return { Component: PokemonGame };
         },
         errorElement: (

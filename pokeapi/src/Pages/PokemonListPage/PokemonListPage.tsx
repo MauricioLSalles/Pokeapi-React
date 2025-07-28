@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
-import PokemonList from "../Organisms/PokemonList/PokemonList";
-import SearchSection from "../Organisms/SearchSection/SearchSection";
-import type { Pokemon } from "../Types/Pokemon";
-import { PokeListContext } from "../CustomHooks/CreateContext";
-import PokemonListPageTemplate from "../templates/PokemonListPageTemplate";
+import PokemonList from "../../Organisms/PokemonList/PokemonList";
+import SearchSection from "../../Organisms/SearchSection/SearchSection";
+import type { Pokemon } from "../../Types/Pokemon";
+import { PokeListContext } from "../../CustomHooks/CreateContext";
+import PokemonListPageTemplate from "../../templates/PokemonListPageTemplate";
 
 export function PokemonListPage() {
   const [list, setList] = useState<Pokemon[]>([]);
